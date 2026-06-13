@@ -1,0 +1,35 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// dart format width=80
+
+part of 'offer_service.dart';
+
+// **************************************************************************
+// ChopperGenerator
+// **************************************************************************
+
+// coverage:ignore-file
+// ignore_for_file: type=lint
+final class _$OfferService extends OfferService {
+  _$OfferService([ChopperClient? client]) {
+    if (client == null) return;
+    this.client = client;
+  }
+
+  @override
+  final Type definitionType = OfferService;
+
+  @override
+  Future<Response<dynamic>> getCoupons() {
+    final Uri $url = Uri.parse('/api/v1/offers/coupons');
+    final Request $request = Request('GET', $url, client.baseUrl);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
+  Future<Response<dynamic>> validateCoupon(Map<String, dynamic> body) {
+    final Uri $url = Uri.parse('/api/v1/offers/validate');
+    final $body = body;
+    final Request $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<dynamic, dynamic>($request);
+  }
+}
