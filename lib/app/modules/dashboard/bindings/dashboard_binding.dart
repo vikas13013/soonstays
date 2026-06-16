@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:soonstays/app/modules/menu/controllers/menu_controller.dart';
 import 'package:soonstays/app/modules/my_trips/controllers/my_trips_controller.dart';
 import 'package:soonstays/app/modules/user_profile/controllers/user_profile_controller.dart';
 
@@ -20,7 +21,7 @@ class DashboardBinding extends Bindings {
 
     Get.lazyPut(() => MyTripsController());
 
-    Get.lazyPut(() => UserProfileController());
+    Get.lazyPut(() => MenuViewController());
 
   }
 }

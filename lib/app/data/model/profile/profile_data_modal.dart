@@ -5,6 +5,7 @@ class UserProfileModel {
   final String? fullName;
   final String? email;
   final String? mobileNo;
+  final String? gender;
   final bool? isActive;
   final bool? isAdmin;
   final String? status;
@@ -17,6 +18,7 @@ class UserProfileModel {
     this.fullName,
     this.email,
     this.mobileNo,
+    this.gender,
     this.isActive,
     this.isAdmin,
     this.status,
@@ -31,6 +33,7 @@ class UserProfileModel {
       fullName: json['full_name'],
       email: json['email'],
       mobileNo: json['mobile_no'],
+      gender: json['gender'],
       isActive: json['is_active'],
       isAdmin: json['is_admin'],
       status: json['status'],

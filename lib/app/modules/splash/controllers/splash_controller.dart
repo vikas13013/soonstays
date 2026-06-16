@@ -32,7 +32,7 @@ class SplashController extends GetxController {
     if (SessionManager.instance.isLoggedIn) {
 
       Get.offAllNamed(
-        Routes.HOME,
+        Routes.DASHBOARD,
       );
 
     } else {

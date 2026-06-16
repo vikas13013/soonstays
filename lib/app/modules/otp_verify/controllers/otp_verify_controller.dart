@@ -152,7 +152,7 @@ class OtpVerifyController extends GetxController {
           user: data['user'] ?? {},
         );
 
-        Get.offAllNamed(Routes.HOME);
+        Get.offAllNamed(Routes.DASHBOARD);
 
       }
 

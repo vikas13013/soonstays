@@ -48,7 +48,7 @@ class EmptyTripView extends StatelessWidget {
             30.height,
 
             InkWell(
-              onTap: () => Get.offAllNamed(Routes.HOME),
+              onTap: () => Get.offAllNamed(Routes.DASHBOARD),
               child: Container(
                 padding: EdgeInsets.symmetric(
                     horizontal: 15

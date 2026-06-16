@@ -21,440 +21,447 @@ class CommonDrawer extends StatelessWidget {
 
     final userName = isLogin?SessionManager.instance.user['fullName']:AppStrings.guest;
 
-    return Drawer(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadiusGeometry.only(
-          bottomRight: Radius.circular(0),
-          topRight: Radius.circular(32)
-        )
-      ),
-      width: Get.width*.65,
-      backgroundColor: Colors.transparent,
-      child: Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(30),
-          ),
+    return SafeArea(
+      bottom: true,
+      top: false,
+      child: Drawer(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusGeometry.only(
+            bottomRight: Radius.circular(0),
+            topRight: Radius.circular(32)
+          )
         ),
-
-        child: Column(
-          children: [
-
-            /// TOP HEADER
-            Container(
-              padding: EdgeInsets.only(
-                top: 40,
-                left: 10,
-                right: 10
-              ),
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    AppColors.primary,
-                    AppColors.primary2,
+        width: Get.width*.65,
+        backgroundColor: Colors.transparent,
+        child: Container(
+          padding: EdgeInsets.only(
+            bottom: 70
+          ),
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(30),
+            ),
+          ),
+      
+          child: Column(
+            children: [
+      
+              /// TOP HEADER
+              Container(
+                padding: EdgeInsets.only(
+                  top: 40,
+                  left: 10,
+                  right: 10
+                ),
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      AppColors.blue,
+                      AppColors.blue,
+                    ],
+                  ),
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(30),
+                  ),
+                ),
+      
+                child: Column(
+                  crossAxisAlignment:
+                  CrossAxisAlignment.start,
+                  children: [
+      
+                    Row(
+                      children: [
+      
+                        Container(
+                          height: 40,
+                          width: 40,
+      
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white
+                                .withOpacity(.15),
+                          ),
+      
+                          child: const Icon(
+                            Icons.person,
+                            color: Colors.white,
+                            size: 25,
+                          ),
+                        ),
+      
+                        10.width,
+      
+                        Text(
+                          "${AppStrings.hello}, ",
+                          style: AppTextStyle.white14Regular,
+                        ),
+      
+                        Text(
+                          "${userName??AppStrings.na}",
+                          style: AppTextStyle.white16SemiBold,
+                        ),
+      
+                      ],
+                    ),
+      
+                    10.height,
+      
+                    isLogin?
+                    SizedBox():
+                    InkWell(
+                      onTap: () => Get.toNamed(Routes.LOGIN),
+                      child: Text(
+                        AppStrings.loginSignUp,
+                        style: TextStyle(
+                          color: Colors.orange.shade300,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+      
+                    10.height,
+      
                   ],
                 ),
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(30),
-                ),
               ),
-
-              child: Column(
-                crossAxisAlignment:
-                CrossAxisAlignment.start,
-                children: [
-
-                  Row(
-                    children: [
-
-                      Container(
-                        height: 40,
-                        width: 40,
-
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.white
-                              .withOpacity(.15),
-                        ),
-
-                        child: const Icon(
-                          Icons.person,
-                          color: Colors.white,
-                          size: 25,
-                        ),
-                      ),
-
-                      10.width,
-
-                      Text(
-                        "${AppStrings.hello}, ",
-                        style: AppTextStyle.white14Regular,
-                      ),
-
-                      Text(
-                        "${userName??AppStrings.na}",
-                        style: AppTextStyle.white16SemiBold,
-                      ),
-
-                    ],
+      
+              /// MENU LIST
+              Expanded(
+                child: ListView(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 15,
                   ),
-
-                  10.height,
-
-                  isLogin?
-                  SizedBox():
-                  InkWell(
-                    onTap: () => Get.toNamed(Routes.LOGIN),
-                    child: Text(
-                      AppStrings.loginSignUp,
-                      style: TextStyle(
-                        color: Colors.orange.shade300,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                      ),
+                  children: [
+      
+                    drawerItem(
+                      icon: Icons.home_rounded,
+                      title: AppStrings.home,
+                      onTap: () => Get.back(),
                     ),
-                  ),
-
-                  10.height,
-
-                ],
-              ),
-            ),
-
-            /// MENU LIST
-            Expanded(
-              child: ListView(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 15,
-                ),
-                children: [
-
-                  drawerItem(
-                    icon: Icons.home_rounded,
-                    title: AppStrings.home,
-                    onTap: () => Get.back(),
-                  ),
-
-                  drawerItem(
-                    icon: Icons.luggage_outlined,
-                    title: AppStrings.myTrips,
-                    onTap: () {
-
-                      Get.back();
-
-                      isLogin?
-                      Get.toNamed(Routes.MY_TRIPS):
-                      Get.toNamed(Routes.LOGIN);
-
-                    },
-                  ),
-
-                  drawerItem(
-                    icon: Icons.person_outline,
-                    title: AppStrings.profile,
-                    onTap: () {
-
-                      Get.back();
-
-                      isLogin?
-                      Get.toNamed(Routes.USER_PROFILE):
-                      Get.toNamed(Routes.LOGIN);
-
-                    },
-                  ),
-
-                  Divider(
-                    thickness: 0.5,
-                  ),
-
-                  5.height,
-
-                  Text(
-                    AppStrings.quickLink,
-                    style: AppTextStyle.black15SemiBold,
-                  ),
-
-                  5.height,
-
-                  drawerItem(
-                    icon: Icons.business,
-                    title: AppStrings.corporatePartner,
-                    onTap: () {
-
-                      Get.back();
-
-                      Get.toNamed(Routes.CORPORATE);
-
-                    },
-                  ),
-
-                  drawerItem(
-                    icon: Icons.storefront_outlined,
-                    title: AppStrings.beOurFranchise,
-                    onTap: () {
-
-                      Get.back();
-
-                      Get.toNamed(Routes.FRANCHISE);
-
-                    },
-                  ),
-
-                  drawerItem(
-                    icon: Icons.flight_takeoff_outlined,
-                    title: AppStrings.travelAgent,
-                    onTap: () {
-
-                      Get.back();
-
-                      Get.toNamed(Routes.TRAVEL_AGENT);
-
-                    },
-                  ),
-
-                  drawerItem(
-                    icon: Icons.call_outlined,
-                    title: AppStrings.contactUs,
-                    onTap: () {
-
-                      Get.back();
-
-                      Get.toNamed(Routes.CONTACT_US);
-
-                    },
-                  ),
-
-                  drawerItem(
-                    icon: Icons.quiz_outlined,
-                    title: AppStrings.faq,
-                    onTap: () {
-
-                      Get.back();
-
-                      Get.toNamed(Routes.FAQ);
-
-                    },
-                  ),
-
-                  Divider(
-                    thickness: 0.5,
-                  ),
-
-                  5.height,
-
-                  Text(
-                    AppStrings.pages,
-                    style: AppTextStyle.black15SemiBold,
-                  ),
-
-                  5.height,
-
-                  drawerItem(
-                      icon: Icons.info_outline,
-                      title: AppStrings.aboutUs,
+      
+                    drawerItem(
+                      icon: Icons.luggage_outlined,
+                      title: AppStrings.myTrips,
                       onTap: () {
-
+      
                         Get.back();
-
-                        Get.toNamed(Routes.ABOUT_US);
-
-                      }
-                  ),
-
-                  drawerItem(
-                    icon: Icons.work_outline,
-                    title: AppStrings.careers,
-                    onTap: () {
-
-                      Get.back();
-
-                      CommonLauncher.openUrl(AppUrls.linkedin);
-
-                    },
-                  ),
-
-
-                  drawerItem(
-                    icon: Icons.article_outlined,
-                    title: AppStrings.blog,
-                    onTap: () {
-
-                      Get.back();
-
-                      CommonLauncher.openUrl(AppUrls.blogUrl);
-
-                    },
-                  ),
-
-                  drawerItem(
-                    icon: Icons.trending_up,
-                    title: AppStrings.investor,
-                    onTap: () {
-
-                      Get.back();
-
-                      Get.toNamed(Routes.INVESTOR);
-
-                    },
-                  ),
-
-                  Divider(
-                    thickness: 0.5,
-                  ),
-
-                  5.height,
-
-                  Text(
-                    AppStrings.policies,
-                    style: AppTextStyle.black15SemiBold,
-                  ),
-
-                  5.height,
-
-                  drawerItem(
-                    icon: Icons.description_outlined,
-                    title: AppStrings.termsAndConditions,
-                    onTap: () {
-
-                      Get.back();
-
-                      Get.toNamed(Routes.TERMS_CONDITIONS);
-
-                    },
-                  ),
-
-                  drawerItem(
-                    icon: Icons.privacy_tip_outlined,
-                    title: AppStrings.privacyPolicy,
-                    onTap: () {
-
-                      Get.back();
-
-                      Get.toNamed(Routes.PRIVACY_POLICY);
-
-                    },
-                  ),
-
-                  drawerItem(
-                    icon: Icons.cancel_outlined,
-                    title: AppStrings.cancellationPolicy,
-                    onTap: () {
-
-                      Get.back();
-
-                      Get.toNamed(Routes.CANCELLATION_POLICY);
-
-                    },
-                  ),
-
-                  drawerItem(
-                    icon: Icons.shield_outlined,
-                    title: AppStrings.legalAndPrivacy,
-                    onTap: () {
-
-                      Get.back();
-
-                      Get.toNamed(Routes.LEGAL_POLICY);
-
-                    },
-                  ),
-
-                  Divider(
-                    thickness: 0.5,
-                  ),
-
-                  5.height,
-
-                  Text(
-                    AppStrings.needHelp.toUpperCase(),
-                    style: AppTextStyle.black15SemiBold,
-                  ),
-
-                  10.height,
-
-                  needHelpCard(
-                    imgPath: AppAssets.phoneCall,
-                    title: AppStrings.callUs,
-                    desc: AppUrls.phoneNumber,
-                    onTap: () => CommonLauncher.makeCall(AppUrls.phoneNumber),
-                  ),
-
-                  10.height,
-
-                  needHelpCard(
-                      imgPath: AppAssets.whatsapp,
-                      title: AppStrings.whatsApp,
-                      desc: AppStrings.chatWithUs,
-                    onTap: () => CommonLauncher.openWhatsApp(phone: AppUrls.phoneNumber,message: "Hello Check"),
-                  ),
-
-                  10.height,
-
-                  needHelpCard(
-                      imgPath: AppAssets.mail,
-                      title: AppStrings.emailUs,
-                      desc: "support@soonstays.com",
-                    onTap: () => CommonLauncher.sendEmail(email: "support@soonstays.com"),
-                  ),
-
-                  const SizedBox(height: 25),
-
-                  /// SOCIAL
-                  Center(
-                    child: Text(
-                      AppStrings.followUs,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
+      
+                        isLogin?
+                        Get.toNamed(Routes.MY_TRIPS):
+                        Get.toNamed(Routes.LOGIN);
+      
+                      },
+                    ),
+      
+                    drawerItem(
+                      icon: Icons.person_outline,
+                      title: AppStrings.profile,
+                      onTap: () {
+      
+                        Get.back();
+      
+                        isLogin?
+                        Get.toNamed(Routes.USER_PROFILE):
+                        Get.toNamed(Routes.LOGIN);
+      
+                      },
+                    ),
+      
+                    Divider(
+                      thickness: 0.5,
+                    ),
+      
+                    5.height,
+      
+                    Text(
+                      AppStrings.quickLink,
+                      style: AppTextStyle.black15SemiBold,
+                    ),
+      
+                    5.height,
+      
+                    drawerItem(
+                      icon: Icons.business,
+                      title: AppStrings.corporatePartner,
+                      onTap: () {
+      
+                        Get.back();
+      
+                        Get.toNamed(Routes.CORPORATE);
+      
+                      },
+                    ),
+      
+                    drawerItem(
+                      icon: Icons.storefront_outlined,
+                      title: AppStrings.beOurFranchise,
+                      onTap: () {
+      
+                        Get.back();
+      
+                        Get.toNamed(Routes.FRANCHISE);
+      
+                      },
+                    ),
+      
+                    drawerItem(
+                      icon: Icons.flight_takeoff_outlined,
+                      title: AppStrings.travelAgent,
+                      onTap: () {
+      
+                        Get.back();
+      
+                        Get.toNamed(Routes.TRAVEL_AGENT);
+      
+                      },
+                    ),
+      
+                    drawerItem(
+                      icon: Icons.call_outlined,
+                      title: AppStrings.contactUs,
+                      onTap: () {
+      
+                        Get.back();
+      
+                        Get.toNamed(Routes.CONTACT_US);
+      
+                      },
+                    ),
+      
+                    drawerItem(
+                      icon: Icons.quiz_outlined,
+                      title: AppStrings.faq,
+                      onTap: () {
+      
+                        Get.back();
+      
+                        Get.toNamed(Routes.FAQ);
+      
+                      },
+                    ),
+      
+                    Divider(
+                      thickness: 0.5,
+                    ),
+      
+                    5.height,
+      
+                    Text(
+                      AppStrings.pages,
+                      style: AppTextStyle.black15SemiBold,
+                    ),
+      
+                    5.height,
+      
+                    drawerItem(
+                        icon: Icons.info_outline,
+                        title: AppStrings.aboutUs,
+                        onTap: () {
+      
+                          Get.back();
+      
+                          Get.toNamed(Routes.ABOUT_US);
+      
+                        }
+                    ),
+      
+                    drawerItem(
+                      icon: Icons.work_outline,
+                      title: AppStrings.careers,
+                      onTap: () {
+      
+                        Get.back();
+      
+                        CommonLauncher.openUrl(AppUrls.linkedin);
+      
+                      },
+                    ),
+      
+      
+                    drawerItem(
+                      icon: Icons.article_outlined,
+                      title: AppStrings.blog,
+                      onTap: () {
+      
+                        Get.back();
+      
+                        CommonLauncher.openUrl(AppUrls.blogUrl);
+      
+                      },
+                    ),
+      
+                    drawerItem(
+                      icon: Icons.trending_up,
+                      title: AppStrings.investor,
+                      onTap: () {
+      
+                        Get.back();
+      
+                        Get.toNamed(Routes.INVESTOR);
+      
+                      },
+                    ),
+      
+                    Divider(
+                      thickness: 0.5,
+                    ),
+      
+                    5.height,
+      
+                    Text(
+                      AppStrings.policies,
+                      style: AppTextStyle.black15SemiBold,
+                    ),
+      
+                    5.height,
+      
+                    drawerItem(
+                      icon: Icons.description_outlined,
+                      title: AppStrings.termsAndConditions,
+                      onTap: () {
+      
+                        Get.back();
+      
+                        Get.toNamed(Routes.TERMS_CONDITIONS);
+      
+                      },
+                    ),
+      
+                    drawerItem(
+                      icon: Icons.privacy_tip_outlined,
+                      title: AppStrings.privacyPolicy,
+                      onTap: () {
+      
+                        Get.back();
+      
+                        Get.toNamed(Routes.PRIVACY_POLICY);
+      
+                      },
+                    ),
+      
+                    drawerItem(
+                      icon: Icons.cancel_outlined,
+                      title: AppStrings.cancellationPolicy,
+                      onTap: () {
+      
+                        Get.back();
+      
+                        Get.toNamed(Routes.CANCELLATION_POLICY);
+      
+                      },
+                    ),
+      
+                    drawerItem(
+                      icon: Icons.shield_outlined,
+                      title: AppStrings.legalAndPrivacy,
+                      onTap: () {
+      
+                        Get.back();
+      
+                        Get.toNamed(Routes.LEGAL_POLICY);
+      
+                      },
+                    ),
+      
+                    Divider(
+                      thickness: 0.5,
+                    ),
+      
+                    5.height,
+      
+                    Text(
+                      AppStrings.needHelp.toUpperCase(),
+                      style: AppTextStyle.black15SemiBold,
+                    ),
+      
+                    10.height,
+      
+                    needHelpCard(
+                      imgPath: AppAssets.phoneCall,
+                      title: AppStrings.callUs,
+                      desc: AppUrls.phoneNumber,
+                      onTap: () => CommonLauncher.makeCall(AppUrls.phoneNumber),
+                    ),
+      
+                    10.height,
+      
+                    needHelpCard(
+                        imgPath: AppAssets.whatsapp,
+                        title: AppStrings.whatsApp,
+                        desc: AppStrings.chatWithUs,
+                      onTap: () => CommonLauncher.openWhatsApp(phone: AppUrls.phoneNumber,message: "Hello Check"),
+                    ),
+      
+                    10.height,
+      
+                    needHelpCard(
+                        imgPath: AppAssets.mail,
+                        title: AppStrings.emailUs,
+                        desc: "support@soonstays.com",
+                      onTap: () => CommonLauncher.sendEmail(email: "support@soonstays.com"),
+                    ),
+      
+                    const SizedBox(height: 25),
+      
+                    /// SOCIAL
+                    Center(
+                      child: Text(
+                        AppStrings.followUs,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
-                  ),
-
-                  const SizedBox(height: 15),
-
-                  Row(
-                    mainAxisAlignment:
-                    MainAxisAlignment.center,
-                    children: [
-
-                      socialIcon(
-                        img: AppAssets.facebook,
-                        url: AppUrls.facebook
-                      ),
-
-                      const SizedBox(width: 12),
-
-                      socialIcon(
-                          img: AppAssets.insta,
-                          url: AppUrls.instagram
-                      ),
-
-                      const SizedBox(width: 12),
-
-                      socialIcon(
-                          img: AppAssets.youTube,
-                          url: AppUrls.youtube
-                      ),
-
-                      const SizedBox(width: 12),
-
-                      socialIcon(
-                          img: AppAssets.linkedin,
-                          url: AppUrls.linkedin
-                      ),
-                    ],
-                  ),
-
-
-                  const SizedBox(height: 15),
-                ],
+      
+                    const SizedBox(height: 15),
+      
+                    Row(
+                      mainAxisAlignment:
+                      MainAxisAlignment.center,
+                      children: [
+      
+                        socialIcon(
+                          img: AppAssets.facebook,
+                          url: AppUrls.facebook
+                        ),
+      
+                        const SizedBox(width: 12),
+      
+                        socialIcon(
+                            img: AppAssets.insta,
+                            url: AppUrls.instagram
+                        ),
+      
+                        const SizedBox(width: 12),
+      
+                        socialIcon(
+                            img: AppAssets.youTube,
+                            url: AppUrls.youtube
+                        ),
+      
+                        const SizedBox(width: 12),
+      
+                        socialIcon(
+                            img: AppAssets.linkedin,
+                            url: AppUrls.linkedin
+                        ),
+                      ],
+                    ),
+      
+      
+                    const SizedBox(height: 15),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

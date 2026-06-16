@@ -20,19 +20,12 @@ class ProfileShimmerScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
-                Container(
-                  height: 60,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                  ),
-                ),
-
                 /// Banner Image
                 Stack(
                   children: [
 
                     Container(
-                      height: 260,
+                      height: 60,
                       decoration: BoxDecoration(
                         color: Colors.white,
                       ),

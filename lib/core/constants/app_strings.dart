@@ -100,6 +100,8 @@ class AppStrings {
 
   static const blog = "Blog";
 
+  static const helpAndSupport = "HELP & SUPPORT";
+
   static const investor = "Investor";
 
   static const quickLink = "Quick Link";
@@ -1036,11 +1038,37 @@ class AppStrings {
 
   static String  popularCities = "Popular Cities";
 
-  static String  viewAll= "View all";
+  static String  viewAll = "View all";
 
-  static String  featuredHotels= "Featured Hotels";
+  static String  featuredHotels = "Featured Hotels";
 
-  static String  howItWorks= "How It Works";
+  static String  howItWorks = "How It Works";
+
+  static String  partnerWithUs = "Partner With Us";
+
+  static String  joinNow = "Join Now";
+
+  static String  amenitiesYouLove = "Amenities You'll Love";
+
+  static String  growYourBusinessWithSoonStays = "Grow your business with SoonStays and reach more travelers";
+
+  static String  findYourPerfectStay = "Find your\nperfect stay";
+
+  static String  book = "Book";
+
+  static String  menu = "Menu";
+
+  static String  chooseAndBookInJustAFewTaps = "Choose & book\nin just a few taps";
+
+  static String  payAndGo = "Pay & Go";
+
+  static String  securePaymentAndEnjoyYourTrip = "Secure payment\nand enjoy your trip";
+
+  static String  quickAccess = "QUICK ACCESS";
+
+  static String  business = "BUSINESS";
+
+  static String  company = "COMPANY";
 
 }
 

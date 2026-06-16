@@ -1,187 +1,182 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:soonstays/app/modules/my_trips/views/my_trips_view.dart';
-import 'package:soonstays/app/modules/user_profile/views/user_profile_view.dart';
+import 'package:soonstays/app/modules/menu/views/menu_view.dart';
+import 'package:soonstays/core/constants/app_colors.dart';
+import 'package:soonstays/core/constants/app_strings.dart';
 
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/constants/app_strings.dart';
-import '../../../../core/constants/app_text_styles.dart';
-import '../../corporate/views/corporate_view.dart';
-import '../../franchise/views/franchise_view.dart';
 import '../../home/views/home_view.dart';
-import '../../login/views/login_view.dart';
-import '../../travel_agent/views/travel_agent_view.dart';
+import '../../my_trips/views/my_trips_view.dart';
+import '../../user_profile/views/user_profile_view.dart';
 import '../controllers/dashboard_controller.dart';
 
-/// ================= MAIN SCREEN =================
 class DashboardView extends GetView<DashboardController> {
-
-  DashboardView({super.key});
-
-  final List<Widget> pages = [
-
-    const HomeView(),
-
-    MyTripsView(
-      type: 1,
-    ),
-
-    UserProfileView(
-      type: 1,
-    ),
-  ];
+  const DashboardView({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-
-      backgroundColor: AppColors.white,
-
       body: Stack(
-
         children: [
 
-          /// Pages
           Obx(
                 () => IndexedStack(
-              index: controller.currentIndex.value,
-              children: pages,
+              index: controller.selectedIndex.value,
+              children: [
+
+                HomeView(
+                  scrollController: controller.homeScrollController,
+                ),
+
+                 MyTripsView(type: 1,),
+
+                 MenuView(
+                   scrollController: controller.moreScrollController,
+                 ),
+
+              ],
             ),
           ),
 
-          /// Floating Bottom Navigation
-          Positioned(
-            left: 20,
-            right: 20,
-            bottom: 20,
-            child: Obx(
-                  () => Container(
+          Obx(() => AnimatedPositioned(
+            duration: const Duration(milliseconds: 350),
+            curve: Curves.easeInOutCubic,
+            left: 0,
+            right: 0,
+            bottom: controller.showBottomBar.value
+                ? 0
+                : -100,
+            child: const CommonBottomNav(),
+          ),),
 
-                height: 70,
-
-                decoration: BoxDecoration(
-
-                  color: Colors.white,
-
-                  borderRadius: BorderRadius.circular(50),
-
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(.10),
-                      blurRadius: 20,
-                      offset: const Offset(0, 8),
-                    ),
-                  ],
-                ),
-
-                child: Row(
-
-                  children: [
-
-                    _navItem(
-                      icon: Icons.home_rounded,
-                      title: "Home",
-                      index: 0,
-                    ),
-
-                    _navItem(
-                      icon: Icons.luggage_outlined,
-                      title: "Trips",
-                      index: 1,
-                    ),
-
-                    _navItem(
-                      icon: Icons.person_outline,
-                      title: "Profile",
-                      index: 2,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
         ],
       ),
     );
   }
+}
 
-  Widget _navItem({
 
-    required IconData icon,
-    required String title,
-    required int index,
+///Common Bottom Navigation
+class CommonBottomNav extends GetView<DashboardController> {
+  const CommonBottomNav({super.key});
 
-  }) {
-
-    final isSelected = controller.currentIndex.value == index;
-
-    return Expanded(
-
-      child: InkWell(
-
-        borderRadius: BorderRadius.circular(20),
-
-        onTap: () => controller.changeTab(index),
-
-        child: Column(
-
-          mainAxisAlignment:
-          MainAxisAlignment.center,
-
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 80,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(.08),
+            blurRadius: 20,
+            offset: const Offset(0, -4),
+          ),
+        ],
+      ),
+      child: Obx(
+            () => Row(
           children: [
-
-            Container(
-
-              padding: const EdgeInsets.all(8),
-
-              decoration: BoxDecoration(
-
-                color: isSelected
-                    ? const Color(
-                  0xFFF2F4FF,
-                )
-                    : Colors.transparent,
-
-                borderRadius:
-                BorderRadius.circular(
-                  12,
-                ),
-              ),
-
-              child: Icon(
-
-                icon,
-
-                size: 22,
-
-                color: isSelected
-                    ? AppColors.secondary
-                    : Colors.grey,
-              ),
+            _navItem(
+              icon: Icons.home_rounded,
+              title: "${AppStrings.home}",
+              index: 0,
             ),
 
-            Text(
+            _navItem(
+              icon: Icons.luggage_rounded ,
+              title: "${AppStrings.myTrips}",
+              index: 1,
+            ),
 
-              title,
-
-              style: TextStyle(
-
-                fontSize: 12,
-
-                fontWeight:
-                FontWeight.w500,
-
-                color: isSelected
-                    ? AppColors.secondary
-                    : Colors.grey,
-              ),
+            _navItem(
+              icon: Icons.grid_view_rounded,
+              title: "${AppStrings.more}",
+              index: 2,
             ),
           ],
         ),
       ),
     );
   }
-}
 
+  Widget _navItem({
+    required IconData icon,
+    required String title,
+    required int index,
+  }) {
+    final bool isSelected = controller.selectedIndex.value == index;
+
+    return Expanded(
+      child: InkWell(
+        onTap: () {
+          controller.changeTab(index);
+        },
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        child: SizedBox(
+          height: 80,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+
+              /// Top Indicator
+              AnimatedContainer(
+                duration: const Duration(
+                  milliseconds: 300,
+                ),
+                curve: Curves.easeInOut,
+                height: 3,
+                width: isSelected ? 35 : 0,
+                decoration: BoxDecoration(
+                  color: AppColors.blue,
+                  borderRadius: BorderRadius.circular(50),
+                ),
+              ),
+
+              const SizedBox(height: 8),
+
+              /// Active Background
+              AnimatedContainer(
+                duration: const Duration(
+                  milliseconds: 250,
+                ),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 4,
+                ),
+                decoration: BoxDecoration(
+                  color: isSelected
+                      ? AppColors.lightBg
+                      : Colors.transparent,
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: Icon(
+                  icon,
+                  size: isSelected ? 28 : 25,
+                  color: isSelected
+                      ? AppColors.blue
+                      : Colors.grey,
+                ),
+              ),
+
+              const SizedBox(height: 4),
+
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: isSelected
+                      ? FontWeight.w600
+                      : FontWeight.w400,
+                  color: isSelected
+                      ? AppColors.blue
+                      : Colors.grey,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

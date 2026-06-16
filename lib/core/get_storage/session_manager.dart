@@ -40,6 +40,15 @@ class SessionManager {
 
   }
 
+  Future<void> updateUser(
+      Map<String, dynamic> user,
+      ) async {
+    await box.write(
+      StorageKeys.user,
+      user,
+    );
+  }
+
   String? get accessToken => box.read(StorageKeys.accessToken);
 
   String? get refreshToken => box.read(StorageKeys.refreshToken);

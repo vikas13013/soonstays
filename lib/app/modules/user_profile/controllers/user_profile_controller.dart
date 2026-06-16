@@ -65,6 +65,8 @@ class UserProfileController extends GetxController {
 
         userData.value = UserProfileModel.fromJson(response.body);
 
+        SessionManager.instance.updateUser(response.body);
+
         fillUserData();
 
         print(userData.value.fullName);
@@ -137,6 +139,8 @@ class UserProfileController extends GetxController {
 
     mobileValue.value = "${userData.value.mobileNo??""}";
     mobileController.value.text = "${userData.value.mobileNo??""}";
+
+    changeGender("${userData.value.gender}");
 
     update();
 

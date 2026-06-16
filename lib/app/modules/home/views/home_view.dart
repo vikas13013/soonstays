@@ -9,7 +9,6 @@ import 'package:soonstays/core/widgets/common_buttons.dart';
 import 'package:soonstays/core/widgets/common_rating_idicator.dart';
 import 'package:soonstays/core/widgets/drawer.dart';
 import 'package:soonstays/core/widgets/image_cache_network.dart';
-import 'package:soonstays/core/widgets/shader_icon.dart';
 import '../../../../core/arguments/property_details_arguments.dart';
 import '../../../../core/constants/app_assets.dart';
 import '../../../../core/constants/app_urls.dart';
@@ -22,16 +21,22 @@ import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({super.key});
+  ScrollController?scrollController;
+
+   HomeView({
+        super.key,this.scrollController,
+      });
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
-      drawer: CommonDrawer(),
+      backgroundColor: AppColors.white,
+      // drawer: CommonDrawer(),
       body: SafeArea(
         top: false,
         bottom: true,
         child: SingleChildScrollView(
+          controller: scrollController,
           physics: ScrollPhysics(),
           child: Stack(
             children: [
@@ -41,7 +46,7 @@ class HomeView extends GetView<HomeController> {
 
               Container(
                 margin: EdgeInsets.only(
-                  top: 250
+                  top: 270
                 ),
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(50),
                 color: Colors.white),
@@ -100,9 +105,9 @@ class HomeView extends GetView<HomeController> {
 
                 /// SEARCH CARD
                 Positioned(
-                  left: 20,
-                  right: 20,
-                  top: 195,
+                  left: 15,
+                  right: 15,
+                  top: 210,
                   child: SearchView(
                     type: 1,
                   ),
@@ -128,7 +133,7 @@ class HotelSearchCard extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: 320,
       width: double.infinity,
       decoration: BoxDecoration(
         image: DecorationImage(
@@ -151,26 +156,26 @@ class HotelSearchCard extends GetView<HomeController> {
 
                 /// Menu
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal:10),
+                  padding: const EdgeInsets.symmetric(horizontal:5),
                   child: Row(
                     children: [
 
-
-                      /// MENU ICON
-                      Builder(
-                        builder: (context) {
-
-                          return InkWell(
-                            onTap: () {
-                              Scaffold.of(context).openDrawer();
-                            },
-                            child: const Icon(
-                              Icons.menu,
-                              color: Colors.white,
-                            ),
-                          );
-                        },
-                      ),
+                      //
+                      // /// MENU ICON
+                      // Builder(
+                      //   builder: (context) {
+                      //
+                      //     return InkWell(
+                      //       onTap: () {
+                      //         Scaffold.of(context).openDrawer();
+                      //       },
+                      //       child: const Icon(
+                      //         Icons.menu,
+                      //         color: AppColors.primary,
+                      //       ),
+                      //     );
+                      //   },
+                      // ),
 
 
                       10.width,
@@ -194,7 +199,7 @@ class HotelSearchCard extends GetView<HomeController> {
                     topButton(
                       bgColor: AppColors.white.withOpacity(0.9),
                       icon: Icons.support_agent,
-                      onTap: () => CommonLauncher.makeCall("${AppUrls.phoneNumber}"),
+                      onTap: () => CommonLauncher.makeCall(AppUrls.phoneNumber),
                     ),
 
                     10.width,
@@ -216,7 +221,7 @@ class HotelSearchCard extends GetView<HomeController> {
             ),
           ),
 
-          10.height,
+          15.height,
 
           Column(
             children: [
@@ -227,7 +232,7 @@ class HotelSearchCard extends GetView<HomeController> {
                 ),
                 TextSpan(
                     text: AppStrings.findYourPerfectStayAcross,
-                    style: AppTextStyle.white20Bold,
+                    style: AppTextStyle.primary20Bold,
                     children: [
 
                       TextSpan(
@@ -243,12 +248,12 @@ class HotelSearchCard extends GetView<HomeController> {
 
               Text(
                 AppStrings.discoverAffordableComfortable,
-                style: AppTextStyle.white11Medium,
+                style: AppTextStyle.primary11Medium,
               ),
 
             ],
           ).marginOnly(
-              left: 25,
+              left: 20,
               right: Get.width*0.3
           ),
 
@@ -283,15 +288,9 @@ class PopularCityCard extends GetView<HomeController> {
               style: AppTextStyle.black16SemiBold,
             ),
 
-            // Icon(
-            //   Icons.arrow_forward_ios_outlined,
-            //   size: 20,
-            //   color: AppColors.grey,
-            // )
-
           ],
         ).marginSymmetric(
-          horizontal: 25,
+          horizontal: 20,
         ),
 
         10.height,
@@ -300,7 +299,7 @@ class PopularCityCard extends GetView<HomeController> {
         SizedBox(
           height: 100,
           child: ListView.builder(
-            padding: EdgeInsets.only(left: 25),
+            padding: EdgeInsets.only(left: 20),
             itemCount: controller.popularCityList.length,
             physics: ScrollPhysics(),
             scrollDirection: Axis.horizontal,
@@ -359,7 +358,7 @@ class InfoCard1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(
-          horizontal: 20
+          horizontal: 15
       ),
       padding: EdgeInsets.symmetric(
           horizontal: 12,
@@ -380,12 +379,12 @@ class InfoCard1 extends StatelessWidget {
               children: [
 
                 Text(
-                  "Partner With Us",
+                  AppStrings.partnerWithUs,
                   style: AppTextStyle.primary14Bold,
                 ),
 
                 Text(
-                  "Grow your business with SoonStays and reach more travelers",
+                  AppStrings.growYourBusinessWithSoonStays,
                   style: AppTextStyle.primary10Regular,
                 )
 
@@ -430,7 +429,7 @@ class InfoCard1 extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  "Join Now",
+                  AppStrings.joinNow,
                   style: AppTextStyle.white12SemiBold,
                 ),
               ),
@@ -452,20 +451,8 @@ class InfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return    Column(
+    return  Column(
       children: [
-
-        // CommonInfoCard(
-        //   img: AppAssets.home5,
-        //   title: AppStrings.franchisePartnership,
-        //   description: AppStrings.expandYourHotelPotentialWithour,
-        //   buttonText: AppStrings.joinPartnerShip,
-        //   onTap: () => Get.toNamed(Routes.FRANCHISE),
-        //   bgColor: AppColors.lightBg,
-        //   textStyle: AppTextStyle.primary16SemiBold,
-        //   buttonBgColor: AppColors.primary2,
-        // ),
-
         CommonInfoCard(
           img: AppAssets.home6,
           title: AppStrings.corporateTravelProgram,
@@ -509,7 +496,7 @@ class CommonInfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(
-        horizontal: 20,
+        horizontal: 15,
         vertical: 10,
       ),
       decoration: BoxDecoration(
@@ -536,7 +523,6 @@ class CommonInfoCard extends StatelessWidget {
               width: 130,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                // color: const Color(0xffEEF2FF),
                 color: AppColors.white,
               ),
             ),
@@ -592,7 +578,7 @@ class CommonInfoCard extends StatelessWidget {
                   onTap: onTap,
 
                   radius: 10,
-                  text: "${buttonText}",
+                  text: buttonText,
                   startColor: buttonBgColor,
                   endColor: buttonBgColor,
                 )
@@ -667,7 +653,7 @@ class HotelFacilityCard extends StatelessWidget {
 
     return Container(
       margin: EdgeInsets.symmetric(
-        horizontal: 25,
+        horizontal: 20,
         vertical: 10
       ),
       child: Column(
@@ -675,7 +661,7 @@ class HotelFacilityCard extends StatelessWidget {
         children: [
 
           Text(
-            "Amenities You'll Love",
+            AppStrings.amenitiesYouLove,
             style: AppTextStyle.black16SemiBold,
           ),
 
@@ -781,9 +767,9 @@ class CurrentHotels extends GetView<HomeController> {
       children: [
         
         Text(
-          "${AppStrings.featuredHotels}",
+          AppStrings.featuredHotels,
           style: AppTextStyle.black16SemiBold,).marginSymmetric(
-          horizontal: 25
+          horizontal: 20
         ),
 
         8.height,
@@ -793,7 +779,7 @@ class CurrentHotels extends GetView<HomeController> {
           height: 200,
           child: ListView.builder(
             padding: EdgeInsets.only(
-              left: 25,
+              left: 20,
               bottom: 15
             ),
             controller: controller.pageController,
@@ -803,8 +789,6 @@ class CurrentHotels extends GetView<HomeController> {
             itemBuilder: (_, index) {
 
               final hotel = controller.propertyList[index];
-
-              print("hotel${hotel}");
 
               return InkWell(
                 onTap: () => Get.toNamed(
@@ -1017,8 +1001,6 @@ class TopHotelsSection extends GetView<HomeController> {
             itemBuilder: (_, index) {
 
               final hotel = controller.propertyList[index];
-
-              print("hotel${hotel}");
 
               return _HotelCard(
                 image: hotel.mediaAssets![0].contentBucketUrl.toString(),
@@ -1248,7 +1230,7 @@ class TravelPromoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(
-        horizontal: 25
+        horizontal: 15
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -1296,7 +1278,7 @@ class TravelPromoCard extends StatelessWidget {
                   AppStrings.discoverYourPerfectStayWithSoonStays,
                   style: AppTextStyle.white16SemiBold,
                 ).marginOnly(
-                    right: 15
+                    right: 20
                 ),
 
                 15.height,
@@ -1306,7 +1288,7 @@ class TravelPromoCard extends StatelessWidget {
                   AppStrings.weOfferCarefullySelected,
                   style: AppTextStyle.greyLight10Light,
                 ).marginOnly(
-                  right: 15
+                  right: 40
                 ),
 
               ],
@@ -1353,7 +1335,7 @@ class HowItWorksSection extends StatelessWidget {
       children: [
 
         Text(
-          "${AppStrings.howItWorks}",
+          AppStrings.howItWorks,
           style: AppTextStyle.primary16SemiBold,
         ),
 
@@ -1365,8 +1347,8 @@ class HowItWorksSection extends StatelessWidget {
 
             _stepItem(
               icon: Icons.search,
-              title: "Search",
-              subtitle: "Find your\nperfect stay",
+              title: "${AppStrings.search}",
+              subtitle: "${AppStrings.findYourPerfectStay}",
             ),
 
             const Padding(
@@ -1380,8 +1362,8 @@ class HowItWorksSection extends StatelessWidget {
 
             _stepItem(
               icon: Icons.apartment_outlined,
-              title: "Book",
-              subtitle: "Choose & book\nin just a few taps",
+              title: "${AppStrings.book}",
+              subtitle: "${AppStrings.chooseAndBookInJustAFewTaps}",
             ),
 
             const Padding(
@@ -1395,15 +1377,15 @@ class HowItWorksSection extends StatelessWidget {
 
             _stepItem(
               icon: Icons.credit_card_outlined,
-              title: "Pay & Go",
-              subtitle: "Secure payment\nand enjoy your trip",
+              title: "${AppStrings.payAndGo}",
+              subtitle: "${AppStrings.securePaymentAndEnjoyYourTrip}",
             ),
 
           ],
         ),
       ],
     ).marginSymmetric(
-      horizontal: 25
+      horizontal: 20
     );
   }
 
@@ -1443,216 +1425,6 @@ class HowItWorksSection extends StatelessWidget {
         ),
 
       ],
-    );
-  }
-}
-// class HowWeWorkSection extends StatelessWidget {
-//   const HowWeWorkSection({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//
-//     final steps = [
-//       {
-//         "title": AppStrings.findYourDestination,
-//         "description": AppStrings.findYourTravelDestination,
-//       },
-//
-//       {
-//         "title": AppStrings.bookAHotel,
-//         "description": AppStrings.afterYouFindTheHotelYouWantToBook,
-//       },
-//
-//       {
-//         "title": AppStrings.payAndGoToDestination,
-//         "description": AppStrings.afterYouPay,
-//       },
-//     ];
-//
-//     return Padding(
-//       padding: const EdgeInsets.symmetric(
-//         horizontal: 18,
-//       ),
-//
-//       child: Column(
-//         crossAxisAlignment:
-//         CrossAxisAlignment.start,
-//
-//         children: [
-//
-//           /// ================= SMALL TITLE =================
-//           Text(
-//             AppStrings.howWeWork,
-//             style: AppTextStyle.primary15Medium,
-//           ),
-//
-//           8.height,
-//
-//           /// ================= MAIN TITLE =================
-//           Text(
-//             AppStrings.bookHotelsEasilyWithJust,
-//             style: AppTextStyle.black20Bold,
-//           ),
-//
-//           const SizedBox(height: 15),
-//
-//           /// ================= DESCRIPTION =================
-//           Text(
-//             AppStrings.theSolutionForThoseWhoDoNot,
-//             style: AppTextStyle.greyDark12Light.copyWith(height: 1.6),
-//           ),
-//
-//           const SizedBox(height: 15),
-//
-//           Text(
-//             AppStrings.searchYourDestination,
-//             style: AppTextStyle.greyDark12Light.copyWith(height: 1.6),
-//           ),
-//
-//           const SizedBox(height: 15),
-//
-//           Text(
-//             AppStrings.ourSeamlessProcessEnsuresSecure,
-//             style: AppTextStyle.greyDark12Light.copyWith(height: 1.6),
-//           ),
-//
-//           const SizedBox(height: 40),
-//
-//           /// ================= STEPS =================
-//           ListView.builder(
-//             itemCount: steps.length,
-//
-//             shrinkWrap: true,
-//
-//             physics:
-//             const NeverScrollableScrollPhysics(),
-//
-//             itemBuilder: (_, index) {
-//
-//               final item = steps[index];
-//
-//               return _StepItem(
-//                 stepNumber: index + 1,
-//
-//                 title: item["title"]!,
-//                 description:
-//                 item["description"]!,
-//
-//                 isLast:
-//                 index == steps.length - 1,
-//               );
-//             },
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
-/// ================= STEP ITEM =================
-
-class _StepItem extends StatelessWidget {
-  final int stepNumber;
-  final String title;
-  final String description;
-  final bool isLast;
-
-  const _StepItem({
-    required this.stepNumber,
-    required this.title,
-    required this.description,
-    required this.isLast,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-
-    return IntrinsicHeight(
-      child: Row(
-        crossAxisAlignment:
-        CrossAxisAlignment.start,
-
-        children: [
-
-          /// ================= LEFT SIDE =================
-          SizedBox(
-            width: 42,
-            child: Column(
-              children: [
-
-                /// CIRCLE
-                Container(
-                  height: 42,
-                  width: 42,
-
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-
-                    border: Border.all(
-                      color: const Color(
-                        0xff24108D,
-                      ),
-                      width: 2,
-                    ),
-                  ),
-
-                  child: Center(
-                    child: Text(
-                      "$stepNumber",
-                      style: AppTextStyle.primary14Regular,
-                    ),
-                  ),
-                ),
-
-                /// LINE
-                if (!isLast)
-                  Expanded(
-                    child: Container(
-                      width: 1.5,
-
-                      color: const Color(
-                        0xffD6D9F5,
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-          ),
-
-          const SizedBox(width: 18),
-
-          /// ================= RIGHT SIDE =================
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                bottom: 34,
-              ),
-
-              child: Column(
-                crossAxisAlignment:
-                CrossAxisAlignment.start,
-
-                children: [
-
-                  /// TITLE
-                  Text(
-                    title,
-                    style: AppTextStyle.black16Bold,
-                  ),
-
-                  const SizedBox(height: 10),
-
-                  /// DESCRIPTION
-                  Text(
-                    description,
-                    style: AppTextStyle.greyDark12Light.copyWith(height: 1.6),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
@@ -1749,7 +1521,7 @@ class featureCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(
-        horizontal: 20,
+        horizontal: 15,
       ),
       padding: const EdgeInsets.symmetric(
         horizontal: 14,

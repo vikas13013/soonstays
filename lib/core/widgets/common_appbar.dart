@@ -69,7 +69,7 @@ DashBoardAppBar({
           10.width,
 
           Image.asset(
-            AppAssets.logo,
+            AppAssets.logo2,
             fit: BoxFit.contain,
             height: 40,
           ),
@@ -114,6 +114,7 @@ Widget PopupMenuButtonWidget() {
 
   return PopupMenuButton<String>(
     offset: const Offset(0, 50),
+    color: AppColors.white,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(16),
     ),
@@ -140,29 +141,29 @@ Widget PopupMenuButtonWidget() {
     },
     itemBuilder: (context) => [
 
-       PopupMenuItem(
-        value: "profile",
-        child: Row(
-          children: [
-            Icon(Icons.person_outline),
-            SizedBox(width: 12),
-            Text("${AppStrings.profile}"),
-          ],
-        ),
-      ),
-
-      PopupMenuItem(
-        value: "trips",
-        child: Row(
-          children: [
-            Icon(Icons.luggage_outlined),
-            SizedBox(width: 12),
-            Text("${AppStrings.myTrips}"),
-          ],
-        ),
-      ),
-
-      const PopupMenuDivider(),
+      //  PopupMenuItem(
+      //   value: "profile",
+      //   child: Row(
+      //     children: [
+      //       Icon(Icons.person_outline),
+      //       SizedBox(width: 12),
+      //       Text("${AppStrings.profile}"),
+      //     ],
+      //   ),
+      // ),
+      //
+      // PopupMenuItem(
+      //   value: "trips",
+      //   child: Row(
+      //     children: [
+      //       Icon(Icons.luggage_outlined),
+      //       SizedBox(width: 12),
+      //       Text("${AppStrings.myTrips}"),
+      //     ],
+      //   ),
+      // ),
+      //
+      // const PopupMenuDivider(),
 
       PopupMenuItem(
         value: "logout",

@@ -24,6 +24,8 @@ import '../modules/legal_policy/bindings/legal_policy_binding.dart';
 import '../modules/legal_policy/views/legal_policy_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/menu/bindings/menu_binding.dart';
+import '../modules/menu/views/menu_view.dart';
 import '../modules/my_trip_details/bindings/my_trip_details_binding.dart';
 import '../modules/my_trip_details/views/my_trip_details_view.dart';
 import '../modules/my_trips/bindings/my_trips_binding.dart';
@@ -55,7 +57,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () => const HomeView(),
+      page: () => HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
@@ -162,6 +164,11 @@ class AppPages {
       name: _Paths.MY_TRIP_DETAILS,
       page: () => const MyTripDetailsView(),
       binding: MyTripDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.MENU,
+      page: () => MenuView(),
+      binding: MenuBinding(),
     ),
   ];
 }

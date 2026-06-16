@@ -223,6 +223,7 @@ class AppTextStyle{
   static const black12Regular = TextStyle(color:AppColors.black , fontSize: 12, fontFamily: "Poppins_regular");
   static const black13Regular = TextStyle(color:AppColors.black , fontSize: 13, fontFamily: "Poppins_regular");
   static const black14Regular = TextStyle(color:AppColors.black , fontSize: 14, fontFamily: "Poppins_regular");
+  static const black15Regular = TextStyle(color:AppColors.black , fontSize: 15, fontFamily: "Poppins_regular");
   static const black16Regular = TextStyle(color:AppColors.black , fontSize: 16, fontFamily: "Poppins_regular");
   static const black18Regular = TextStyle(color:AppColors.black , fontSize: 18, fontFamily: "Poppins_regular");
   static const black20Regular = TextStyle(color:AppColors.black , fontSize: 20, fontFamily: "Poppins_regular");

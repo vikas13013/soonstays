@@ -407,7 +407,7 @@ class CommonDialogs {
 
                     /// Go Home/Search Screen
                     Get.offAllNamed(
-                      Routes.HOME,
+                      Routes.DASHBOARD,
                     );
 
                   },

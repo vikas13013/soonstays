@@ -9,6 +9,8 @@ class AppAssets {
   /// Images
   static const logo = "assets/images/logo.png";
 
+  static const logo2 = "assets/images/logo2.png";
+
   static const home1 = "assets/images/home/home_1.png";
 
   static const home2 = "assets/images/home/home_2.png";

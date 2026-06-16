@@ -31,7 +31,7 @@ class MyTripsView extends GetView<MyTripsController> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CommonAppBar(
+      appBar: type==1?DashBoardAppBar():CommonAppBar(
         title: AppStrings.myTrips,
         action: [
 
@@ -89,7 +89,7 @@ class MyTripsView extends GetView<MyTripsController> {
                     ),
                   ],
                 ),
-                labelColor: const Color(0xFF2155F5),
+                labelColor: AppColors.blue,
                 unselectedLabelStyle: AppTextStyle.greay12Regular,
                 unselectedLabelColor: Colors.grey,
                 labelStyle: const TextStyle(
