@@ -4,6 +4,7 @@ import 'package:soonstays/app/modules/menu/views/menu_view.dart';
 import 'package:soonstays/core/constants/app_colors.dart';
 import 'package:soonstays/core/constants/app_strings.dart';
 
+import '../../../../core/widgets/double_back_exit.dart';
 import '../../home/views/home_view.dart';
 import '../../my_trips/views/my_trips_view.dart';
 import '../../user_profile/views/user_profile_view.dart';
@@ -14,41 +15,43 @@ class DashboardView extends GetView<DashboardController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
+    return DoubleBackToExit(
+      child: Scaffold(
+        body: Stack(
+          children: [
 
-          Obx(
-                () => IndexedStack(
-              index: controller.selectedIndex.value,
-              children: [
+            Obx(
+                  () => IndexedStack(
+                index: controller.selectedIndex.value,
+                children: [
 
-                HomeView(
-                  scrollController: controller.homeScrollController,
-                ),
+                  HomeView(
+                    scrollController: controller.homeScrollController,
+                  ),
 
-                 MyTripsView(type: 1,),
+                   MyTripsView(type: 1,),
 
-                 MenuView(
-                   scrollController: controller.moreScrollController,
-                 ),
+                   MenuView(
+                     scrollController: controller.moreScrollController,
+                   ),
 
-              ],
+                ],
+              ),
             ),
-          ),
 
-          Obx(() => AnimatedPositioned(
-            duration: const Duration(milliseconds: 350),
-            curve: Curves.easeInOutCubic,
-            left: 0,
-            right: 0,
-            bottom: controller.showBottomBar.value
-                ? 0
-                : -100,
-            child: const CommonBottomNav(),
-          ),),
+            Obx(() => AnimatedPositioned(
+              duration: const Duration(milliseconds: 350),
+              curve: Curves.easeInOutCubic,
+              left: 0,
+              right: 0,
+              bottom: controller.showBottomBar.value
+                  ? 0
+                  : -100,
+              child: const CommonBottomNav(),
+            ),),
 
-        ],
+          ],
+        ),
       ),
     );
   }

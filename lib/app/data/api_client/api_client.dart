@@ -49,13 +49,11 @@ final chopperClient = ChopperClient(
 
   interceptors: [
 
-
     AuthInterceptor(),
 
     ErrorInterceptor(),
 
     HttpLoggingInterceptor(),
-
 
   ],
 

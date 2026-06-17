@@ -4,11 +4,18 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:soonstays/app/data/binding/initial_binding.dart';
 import 'app/routes/app_pages.dart';
+import 'core/services/connectivity_service.dart';
+import 'core/widgets/common_internet_banner.dart';
 import 'core/widgets/common_loader.dart';
 
-void main() {
+Future<void> main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
+
+  ///Connectivity Service Register
+  await Get.putAsync(
+        () => ConnectivityService().init(),
+  );
 
   ///Initiate Easy Loader
   Loading().configEasyLoading();
@@ -33,7 +40,22 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       getPages: AppPages.routes,
-      builder: EasyLoading.init(),
+      builder: (context, child) {
+
+        final easyLoading = EasyLoading.init();
+
+        return Stack(
+          children: [
+
+            easyLoading(
+              context,
+              child,
+            ),
+
+            const InternetBanner(),
+          ],
+        );
+      },
       initialRoute: AppPages.INITIAL,
       initialBinding: InitialBinding()   ,
     );
