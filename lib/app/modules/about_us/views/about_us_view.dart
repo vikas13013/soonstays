@@ -18,8 +18,10 @@ class AboutUsView extends GetView<AboutUsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      appBar: CommonAppBar(title: "${AppStrings.aboutUs}"),
-      drawer: CommonDrawer(),
+      appBar: CommonAppBar(
+          title: AppStrings.aboutUs,
+          isActionTrue: true
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -29,32 +31,32 @@ class AboutUsView extends GetView<AboutUsController> {
               width: double.infinity,
               padding: const EdgeInsets.symmetric(
                 horizontal: 20,
-                vertical: 20,
+                vertical: 15,
               ),
               margin: EdgeInsets.symmetric(
                 vertical: 10,
                 horizontal: 10
               ),
               decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-
+                borderRadius: BorderRadius.all(
+                    Radius.circular(20)
+                ),
+                gradient: const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
                   colors: [
                     AppColors.primary,
-                    AppColors.primary2
+                    AppColors.blue,
                   ],
                 ),
               ),
-
               child: Column(
                 children: [
 
                   Text(
                     AppStrings.aboutSoonStays,
                     textAlign: TextAlign.center,
-                    style: AppTextStyle.white26Bold,
+                    style: AppTextStyle.white20SemiBold,
                   ),
 
                   15.height,
@@ -64,6 +66,7 @@ class AboutUsView extends GetView<AboutUsController> {
                     textAlign: TextAlign.center,
                     style: AppTextStyle.white12Light
                   ),
+
                 ],
               ),
             ),
@@ -77,7 +80,6 @@ class AboutUsView extends GetView<AboutUsController> {
               child: Column(
                 crossAxisAlignment:
                 CrossAxisAlignment.start,
-
                 children: [
 
                   /// ================= WHO WE ARE =================
@@ -86,34 +88,28 @@ class AboutUsView extends GetView<AboutUsController> {
                     style: AppTextStyle.black20Bold,
                   ),
 
-                  const SizedBox(height: 10),
+                  10.height,
 
                   _paragraph(
                     AppStrings.theIdeaBehindSoonStaysWasBornFrom,
                   ),
 
-                  const SizedBox(height: 24),
+                  20.height,
 
                   _paragraph(
                     AppStrings.inspiredByTheSpiritOfModernIndian,
                   ),
 
-                  const SizedBox(height: 36),
+                  30.height,
 
                   /// ================= STATS =================
                   GridView.count(
                     shrinkWrap: true,
-
-                    physics:
-                    const NeverScrollableScrollPhysics(),
-
+                    physics: const NeverScrollableScrollPhysics(),
                     crossAxisCount: 2,
-
                     crossAxisSpacing: 16,
                     mainAxisSpacing: 16,
-
                     childAspectRatio: 1.15,
-
                     children: const [
 
                       _StatCard(
@@ -135,15 +131,16 @@ class AboutUsView extends GetView<AboutUsController> {
                         value: "24/7",
                         title: AppStrings.customerSupport,
                       ),
+
                     ],
                   ),
 
-                  const SizedBox(height: 40),
+                  30.height,
 
                   /// ================= PART OF JOURNEY =================
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.all(24),
+                    padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
                       color: AppColors.lightBg,
                       borderRadius: BorderRadius.circular(28),
@@ -155,7 +152,6 @@ class AboutUsView extends GetView<AboutUsController> {
                         ),
                       ],
                     ),
-
                     child: Column(
                       children: [
 
@@ -165,18 +161,19 @@ class AboutUsView extends GetView<AboutUsController> {
                           style: AppTextStyle.black20Bold,
                         ),
 
-                        const SizedBox(height: 28),
+                        28.height,
 
                         Text(
                           AppStrings.travelHasAlwaysBroughtPeopleTogether,
                           textAlign: TextAlign.center,
                           style: AppTextStyle.greyDark13Light.copyWith(height: 2),
                         ),
+
                       ],
                     ),
                   ),
 
-                  const SizedBox(height: 44),
+                  44.height,
 
                   /// ================= COMMITMENT =================
                   Center(
@@ -189,18 +186,19 @@ class AboutUsView extends GetView<AboutUsController> {
                           style: AppTextStyle.black20Bold,
                         ),
 
-                        const SizedBox(height: 14),
+                        14.height,
 
                         Text(
                           AppStrings.asWeContinueToGrowAcrossNewDestination,
                           textAlign: TextAlign.center,
                           style: AppTextStyle.greyDark14Light.copyWith(height: 1.5),
                         ),
+
                       ],
                     ),
                   ),
 
-                  const SizedBox(height: 30),
+                  30.height,
 
                   /// ================= COMMITMENT CARDS =================
                   const _CommitmentCard(
@@ -208,28 +206,28 @@ class AboutUsView extends GetView<AboutUsController> {
                     description: AppStrings.makeStaysAffordableWithoutCompromising,
                   ),
 
-                  const SizedBox(height: 20),
+                  20.height,
 
                   const _CommitmentCard(
                     title: AppStrings.trustedRelationships,
                     description: AppStrings.buildGenuineRelationshipsWith,
                   ),
 
-                  const SizedBox(height: 20),
+                  20.height,
 
                   const _CommitmentCard(
                     title: AppStrings.reliablePlatform,
                     description: AppStrings.createAPlatformThatTravelsCanRely,
                   ),
 
-                  const SizedBox(height: 40),
+                  30.height,
 
                   /// ================= CONTACT CARD =================
                   Container(
-                    width: double.infinity,
+
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 28,
-                      vertical: 35
+                      horizontal: 20,
+                      vertical: 25
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
@@ -242,7 +240,6 @@ class AboutUsView extends GetView<AboutUsController> {
                         ],
                       ),
                     ),
-
                     child: Column(
                       children: [
 
@@ -252,7 +249,7 @@ class AboutUsView extends GetView<AboutUsController> {
                           style: AppTextStyle.white22Bold,
                         ),
 
-                        const SizedBox(height: 20),
+                        20.height,
 
                         Text(
                           AppStrings.yourJourneyInspiresUs,
@@ -260,7 +257,7 @@ class AboutUsView extends GetView<AboutUsController> {
                           style: AppTextStyle.white12Light.copyWith(height: 1.8),
                         ),
 
-                        const SizedBox(height: 20),
+                        20.height,
 
                         _contactRow(
                           Icons.phone_in_talk_rounded,
@@ -269,7 +266,7 @@ class AboutUsView extends GetView<AboutUsController> {
                               () => CommonLauncher.makeCall(AppUrls.phoneNumber),
                         ),
 
-                        const SizedBox(height: 22),
+                        20.height,
 
                         _contactRow(
                           Icons.email_outlined,
@@ -278,7 +275,7 @@ class AboutUsView extends GetView<AboutUsController> {
                                 () => CommonLauncher.sendEmail(email: AppUrls.supportEmail)
                         ),
 
-                        const SizedBox(height: 22),
+                        20.height,
 
                         _contactRow(
                           Icons.language,
@@ -286,11 +283,11 @@ class AboutUsView extends GetView<AboutUsController> {
                           Colors.white,
                                 () => CommonLauncher.openUrl(AppUrls.website)
                         ),
+
                       ],
                     ),
                   ),
 
-                  const SizedBox(height: 40),
                 ],
               ),
             ),

@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:shimmer/shimmer.dart';
-import 'package:soonstays/core/constants/app_assets.dart';
 import 'package:soonstays/core/constants/app_colors.dart';
 import 'package:soonstays/core/constants/app_size.dart';
 import 'package:soonstays/core/constants/app_strings.dart';
 import 'package:soonstays/core/constants/app_text_styles.dart';
 import 'package:soonstays/core/utils/app_date_format.dart';
-import 'package:soonstays/core/widgets/blinkit_dot.dart';
 import 'package:soonstays/core/widgets/common_appbar.dart';
 import 'package:soonstays/core/widgets/common_buttons.dart';
 import 'package:soonstays/core/widgets/image_cache_network.dart';
-
+import '../../../../core/enums/booking_status.dart';
 import '../../../../core/widgets/empty_box.dart';
 import '../../../../core/widgets/shimmer/my_trips_shimmer.dart';
 import '../../../data/model/bookings/bookings_model.dart';
@@ -111,7 +107,7 @@ class MyTripsView extends GetView<MyTripsController> {
                           size: 12,
                         ),
 
-                        SizedBox(width: 4),
+                        4.width,
 
                         Text(
                             AppStrings.upcoming
@@ -123,8 +119,7 @@ class MyTripsView extends GetView<MyTripsController> {
 
                   Tab(
                     child: Row(
-                      mainAxisAlignment:
-                      MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
 
                         Icon(
@@ -132,7 +127,7 @@ class MyTripsView extends GetView<MyTripsController> {
                           size: 15,
                         ),
 
-                        SizedBox(width: 4),
+                        4.width,
 
                         Text(AppStrings.cancelled),
 
@@ -142,8 +137,7 @@ class MyTripsView extends GetView<MyTripsController> {
 
                   Tab(
                     child: Row(
-                      mainAxisAlignment:
-                      MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
 
                         Icon(
@@ -151,7 +145,7 @@ class MyTripsView extends GetView<MyTripsController> {
                           size: 15,
                         ),
 
-                        SizedBox(width: 4),
+                        4.width,
 
                         Text(AppStrings.completed),
 
@@ -175,7 +169,7 @@ class MyTripsView extends GetView<MyTripsController> {
                       controller: controller,
                       bookingData: controller.upcoming,
                       onRefresh: () => controller.getBookings(
-                        status: "CONFIRMED,PENDING",
+                        status: "${BookingStatus.confirmed.value},${BookingStatus.pending.value}",
                         bookingData: controller.upcoming,
                       ),
                     ),
@@ -189,7 +183,7 @@ class MyTripsView extends GetView<MyTripsController> {
                       controller: controller,
                       bookingData: controller.cancelled,
                       onRefresh: () => controller.getBookings(
-                        status: "CANCELLED",
+                        status: BookingStatus.cancelled.value,
                         bookingData: controller.cancelled,
                       ),
                     ),
@@ -203,7 +197,7 @@ class MyTripsView extends GetView<MyTripsController> {
                       controller: controller,
                       bookingData: controller.completed,
                       onRefresh: () => controller.getBookings(
-                        status: "COMPLETED",
+                        status: BookingStatus.completed.value,
                         bookingData: controller.completed,
                       ),
                     ),
@@ -249,10 +243,7 @@ myTripsList({
         controller: controller.scrollController,
         physics:
         const AlwaysScrollableScrollPhysics(),
-        itemCount: bookingData.list.length +
-            (bookingData.isLoadMore.value
-                ? 1
-                : 0),
+        itemCount: bookingData.list.length + (bookingData.isLoadMore.value ? 1 : 0),
         itemBuilder: (context, index) {
 
           /// Pagination Loader
@@ -262,56 +253,37 @@ myTripsList({
                 vertical: 20,
               ),
               child: Center(
-                child:
-                CircularProgressIndicator(),
+                child: CircularProgressIndicator(),
               ),
             );
           }
 
-          final data =
-          bookingData.list[index];
+          final data = bookingData.list[index];
 
           return BookingCard(
             data: data,
-            image:
-            data.propertySnapshot?.image ??
-                "",
-            hotelName:
-            data.propertySnapshot?.name ??
-                "",
-            address:
-            data.propertySnapshot?.address ??
-                "",
+            image: data.propertySnapshot?.image ?? "",
+            hotelName: data.propertySnapshot?.name ?? "",
+            address: data.propertySnapshot?.address ?? "",
             bookingId: data.id ?? "",
-            amount:
-            data.grandTotal?.toString() ??
-                "",
-            checkIn:
-            AppDateFormatter().formatDate(
-              data
-                  .payloadData
+            amount: data.grandTotal?.toString() ?? "",
+            checkIn: AppDateFormatter().formatDate(
+              data.payloadData
                   ?.searchCriteria
                   ?.timeline
                   ?.checkIn,
             ),
-            checkOut:
-            AppDateFormatter().formatDate(
-              data
-                  .payloadData
+            checkOut: AppDateFormatter().formatDate(
+              data.payloadData
                   ?.searchCriteria
                   ?.timeline
                   ?.checkOut,
             ),
-            roomName:
-            data.roomSnapshot?.name ?? "",
-            guests:
-            "${data.payloadData?.searchCriteria?.occupancy?.totalAdults ?? 0} Adult",
-            stayNights:
-            "${data.payloadData?.searchCriteria?.timeline?.lengthOfStay ?? 0}N",
-            bookingStatus:
-            data.status ?? "",
-            paymentStatus:
-            data.paymentStatus ?? "",
+            roomName: data.roomSnapshot?.name ?? "",
+            guests: "${data.payloadData?.searchCriteria?.occupancy?.totalAdults ?? 0} ${AppStrings.adults}",
+            stayNights: "${data.payloadData?.searchCriteria?.timeline?.lengthOfStay ?? 0}N",
+            bookingStatus: data.status ?? "",
+            paymentStatus: data.paymentStatus ?? "",
           );
         },
       ),
@@ -494,13 +466,13 @@ class BookingCard extends StatelessWidget {
               _InfoChip(
                 icon: Icons.calendar_month_outlined,
                 title: checkIn,
-                subtitle: "Check-in",
+                subtitle: AppStrings.checkIn,
               ),
 
               _InfoChip(
                 icon: Icons.calendar_month_outlined,
                 title: checkOut,
-                subtitle: "Check-out",
+                subtitle: AppStrings.checkOut,
               ),
 
               _InfoChip(
@@ -509,6 +481,7 @@ class BookingCard extends StatelessWidget {
                 subtitle: guests,
                 isExpanded: true,
               ),
+
             ],
           ),
 

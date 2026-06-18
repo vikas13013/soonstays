@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:soonstays/core/constants/app_assets.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../controllers/splash_controller.dart';
 
+///Splash View
 class SplashView extends GetView<SplashController> {
   const SplashView({super.key});
   @override

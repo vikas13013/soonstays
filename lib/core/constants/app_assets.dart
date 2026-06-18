@@ -7,9 +7,11 @@ class AppAssets {
   static const pictureImg = "assets/images/picture.png";
 
   /// Images
-  static const logo = "assets/images/logo.png";
+  static const logo = "assets/images/logo/logo.png";
 
-  static const logo2 = "assets/images/logo2.png";
+  static const logo2 = "assets/images/logo/logo2.png";
+
+  static const logo3 = "assets/images/logo/logo3.png";
 
   static const home1 = "assets/images/home/home_1.png";
 

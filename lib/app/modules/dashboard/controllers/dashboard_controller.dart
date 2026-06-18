@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 class DashboardController extends GetxController {
   //TODO: Implement DashboardController
 
-  RxInt selectedIndex = 0.obs;
+  final selectedIndex = 0.obs;
 
-  RxBool showBottomBar = true.obs;
+  final showBottomBar = true.obs;
 
   final ScrollController homeScrollController = ScrollController();
 

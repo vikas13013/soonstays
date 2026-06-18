@@ -24,6 +24,8 @@ class AppUrls {
   /// phoneNumber
   static const phoneNumber = "+919303751562";
 
+  static const phoneCode = "+91";
+
   /// EMAIL
   static const supportEmail = "bookings@soonstays.com";
 

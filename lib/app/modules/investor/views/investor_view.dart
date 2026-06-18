@@ -23,8 +23,10 @@ class InvestorView extends GetView<InvestorController> {
 
     return Scaffold(
       backgroundColor: AppColors.white,
-      appBar: CommonAppBar(title: "${AppStrings.investor}"),
-      drawer: CommonDrawer(),
+      appBar: CommonAppBar(
+          title: "${AppStrings.investor}",
+          isActionTrue: true
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -61,8 +63,7 @@ class InvestorView extends GetView<InvestorController> {
                     ),
                     decoration: BoxDecoration(
                       color: const Color(0xff1F1696),
-                      borderRadius:
-                      BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(30),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.blue.withOpacity(.2),
@@ -72,9 +73,9 @@ class InvestorView extends GetView<InvestorController> {
                       ],
                     ),
                     child: Row(
-                      mainAxisSize:
-                      MainAxisSize.min,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
+
                         Container(
                           height: 8,
                           width: 8,
@@ -129,6 +130,7 @@ class InvestorView extends GetView<InvestorController> {
                         TextSpan(
                           text: "   ${AppStrings.bookingSolutionsJoinIndiaSFastest}",
                         ),
+
                       ],
                     ),
                   ),
@@ -170,20 +172,19 @@ class InvestorView extends GetView<InvestorController> {
                     value: "4.2x",
                     valueColor: AppColors.green,
                   ),
+
                 ],
               ),
             ),
 
             /// ================= INVESTOR IMAGE =================
             Padding(
-              padding:
-              const EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 10,
               ),
 
               child: Stack(
                 clipBehavior: Clip.none,
-
                 children: [
 
                   Container(
@@ -223,8 +224,7 @@ class InvestorView extends GetView<InvestorController> {
                         padding: const EdgeInsets.all(18),
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius:
-                          BorderRadius.circular(22),
+                          borderRadius: BorderRadius.circular(22),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black.withOpacity(.08),
@@ -267,6 +267,7 @@ class InvestorView extends GetView<InvestorController> {
                                     "+28.4%",
                                     style: AppTextStyle.primary24ExtraBold,
                                   ),
+
                                 ],
                               ),
                             ),
@@ -346,6 +347,7 @@ class InvestorView extends GetView<InvestorController> {
                     description: AppStrings.dataDrivenInsightsThatMaximize,
                     whiteCard: false,
                   ),
+
                 ],
               ),
             ),
@@ -416,6 +418,7 @@ class InvestorView extends GetView<InvestorController> {
                     title: AppStrings.growthSafety,
                     description: AppStrings.strongMarketPositioningWith,
                   ),
+
                 ],
               ),
             ),
@@ -424,8 +427,7 @@ class InvestorView extends GetView<InvestorController> {
 
             /// ================= MAN IMAGE =================
             Padding(
-              padding:
-              const EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 16,
               ),
               child: Image.asset(
@@ -503,6 +505,7 @@ class InvestorView extends GetView<InvestorController> {
                     title: AppStrings.complianceAndGovernance,
                     description: AppStrings.weMaintainInstitutionalGradeFinacial,
                   ),
+
                 ],
               ),
             ),

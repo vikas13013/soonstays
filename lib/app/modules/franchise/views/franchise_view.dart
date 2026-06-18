@@ -26,8 +26,10 @@ class FranchiseView extends GetView<FranchiseController> {
 
     return Scaffold(
       backgroundColor: AppColors.white,
-      appBar: CommonAppBar(title: "${AppStrings.franchise}"),
-      drawer: CommonDrawer(),
+      appBar: CommonAppBar(
+          title: "${AppStrings.franchise}",
+          isActionTrue: true
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -42,8 +44,8 @@ class FranchiseView extends GetView<FranchiseController> {
                   padding: const EdgeInsets.only(
                     left: 16,
                     right: 16,
-                    top: 60,
-                    bottom: 120,
+                    top: 40,
+                    bottom: 70,
                   ),
                   decoration: const BoxDecoration(
                     image: DecorationImage(
@@ -59,7 +61,7 @@ class FranchiseView extends GetView<FranchiseController> {
                       /// BADGE
                       Container(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 22,
+                          horizontal: 15,
                           vertical: 10,
                         ),
                         decoration: BoxDecoration(
@@ -163,7 +165,7 @@ class FranchiseView extends GetView<FranchiseController> {
               ],
             ),
 
-            100.height,
+            80.height,
 
             /// ================= FORM =================
             Container(
@@ -192,11 +194,9 @@ class FranchiseView extends GetView<FranchiseController> {
                   CrossAxisAlignment.start,
                   children: [
 
-                    10.height,
-
                     Text(
                       AppStrings.franchiseApplication,
-                      style: AppTextStyle.primary20ExtraBold,
+                      style: AppTextStyle.primary20Bold,
                     ),
 
                     5.height,
@@ -211,7 +211,7 @@ class FranchiseView extends GetView<FranchiseController> {
 
                     Text(
                       AppStrings.name.toUpperCase(),
-                      style: AppTextStyle.greay14Medium,
+                      style: AppTextStyle.greay13Medium,
                     ),
 
                     5.height,
@@ -231,7 +231,7 @@ class FranchiseView extends GetView<FranchiseController> {
 
                     Text(
                       AppStrings.mobileNumber.toUpperCase(),
-                      style: AppTextStyle.greay14Medium,
+                      style: AppTextStyle.greay13Medium,
                     ),
 
                     5.height,
@@ -255,7 +255,7 @@ class FranchiseView extends GetView<FranchiseController> {
 
                     Text(
                       AppStrings.email.toUpperCase(),
-                      style: AppTextStyle.greay14Medium,
+                      style: AppTextStyle.greay13Medium,
                     ),
 
                     5.height,
@@ -274,7 +274,7 @@ class FranchiseView extends GetView<FranchiseController> {
 
                     Text(
                       AppStrings.hotelName.toUpperCase(),
-                      style: AppTextStyle.greay14Medium,
+                      style: AppTextStyle.greay13Medium,
                     ),
 
                     5.height,
@@ -294,7 +294,7 @@ class FranchiseView extends GetView<FranchiseController> {
 
                     Text(
                       AppStrings.hotelCity.toUpperCase(),
-                      style: AppTextStyle.greay14Medium,
+                      style: AppTextStyle.greay13Medium,
                     ),
 
                     5.height,

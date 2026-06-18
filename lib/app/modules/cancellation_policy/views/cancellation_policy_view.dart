@@ -12,7 +12,10 @@ class CancellationPolicyView extends GetView<CancellationPolicyController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(title: "${AppStrings.cancellationPolicy}"),
+      appBar: CommonAppBar(
+          title: "${AppStrings.cancellationPolicy}",
+          isActionTrue: true
+      ),
       body: Obx(
             () {
           if (controller.isLoading.value) {

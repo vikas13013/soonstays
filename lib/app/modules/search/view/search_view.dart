@@ -269,9 +269,9 @@ class CommonRoomGuestDialog {
 
                     children: [
 
-                      const Expanded(
+                      Expanded(
                         child: Text(
-                          "Rooms & Guests",
+                          AppStrings.roomsAndGuests,
                           style: AppTextStyle.black18SemiBold,
                         ),
                       ),
@@ -327,7 +327,7 @@ class CommonRoomGuestDialog {
                             ],
                           ),
                           child: buildCounter(
-                            "Adults",
+                            AppStrings.adults,
                             controller.adults.value,
                             controller.addAdult,
                             controller.removeAdult,
@@ -368,7 +368,7 @@ class CommonRoomGuestDialog {
                           child: Column(
                             children: [
                               buildCounter(
-                                "Children",
+                                AppStrings.children,
                                 controller.children.value,
                                 controller.addChild,
                                 controller.removeChild,
@@ -382,9 +382,10 @@ class CommonRoomGuestDialog {
                                     ),
                                     child: Row(
                                       children: [
+
                                         Expanded(
                                           child: Text(
-                                            "Child ${index+1} Age",
+                                            "${AppStrings.child} ${index+1} ${AppStrings.age}",
                                             style: AppTextStyle.black14Medium,
                                           ),
                                         ),
@@ -397,7 +398,7 @@ class CommonRoomGuestDialog {
                                               DropdownMenuItem(
                                                 value: i,
                                                 child: Text(
-                                                  "$i years",
+                                                  "$i ${AppStrings.years}",
                                                 ),
                                               ),
                                           ),
@@ -420,7 +421,7 @@ class CommonRoomGuestDialog {
                           ),
                         ),
 
-                        SizedBox(height: 15),
+                        15.height,
 
                         Container(
                           padding: EdgeInsets.symmetric(
@@ -452,7 +453,7 @@ class CommonRoomGuestDialog {
                             ],
                           ),
                           child: buildCounter(
-                            "Rooms",
+                            AppStrings.rooms,
                             controller.rooms.value,
                             controller.addRoom,
                             controller.removeRoom,
@@ -466,12 +467,9 @@ class CommonRoomGuestDialog {
                 /// BUTTON
                 Padding(
                   padding: const EdgeInsets.all(16),
-
                   child: SizedBox(
-
                     width: double.infinity,
                     height: 50,
-
                     child: ElevatedButton(
                       style: ButtonStyle(
                           backgroundColor: WidgetStatePropertyAll(AppColors.primary3)
@@ -490,8 +488,8 @@ class CommonRoomGuestDialog {
 
                         Get.back();
                       },
-                      child: const Text(
-                        "Apply Selection",
+                      child: Text(
+                        AppStrings.applySelection,
                         style: AppTextStyle.white14SemiBold,
                       ),
                     ),
@@ -502,7 +500,6 @@ class CommonRoomGuestDialog {
           ),
         );
       },
-
       transitionBuilder: (
           context,
           animation,
@@ -511,18 +508,13 @@ class CommonRoomGuestDialog {
           ) {
 
         return SlideTransition(
-
           position: Tween<Offset>(
-
             begin: const Offset(
               0,
               1,
             ),
-
             end: Offset.zero,
-
           ).animate(animation),
-
           child: child,
         );
       },
@@ -583,13 +575,11 @@ class _CommonSearchTile extends StatelessWidget {
 
     return Material(
       color: Colors.transparent,
-
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(12),
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
-
         child: Container(
           padding: const EdgeInsets.symmetric(
             horizontal: 10,
@@ -600,11 +590,8 @@ class _CommonSearchTile extends StatelessWidget {
               color: const Color(0xffD9D9D9),
               width: .8,
             ),
-
-            borderRadius:
-            BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(12),
           ),
-
           child: Row(
             children: [
               Container(
@@ -614,23 +601,19 @@ class _CommonSearchTile extends StatelessWidget {
                   color: AppColors.lightBg,
                   borderRadius: BorderRadius.circular(12),
                 ),
-
                 child: ShaderMask(
-
                   shaderCallback: (bounds) {
-
                     return LinearGradient(
-
                       colors: [
 
                         AppColors.primary3,
 
                         Color(0xffFF5E62),
+
                       ],
 
                     ).createShader(bounds);
                   },
-
                   child: Icon(
                     icon,
                     color: AppColors.white,
@@ -643,9 +626,7 @@ class _CommonSearchTile extends StatelessWidget {
 
               Expanded(
                 child: Column(
-                  crossAxisAlignment:
-                  CrossAxisAlignment.start,
-
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
 
                     Text(
@@ -653,12 +634,13 @@ class _CommonSearchTile extends StatelessWidget {
                       style: AppTextStyle.greay10SemiBold,
                     ),
 
-                    const SizedBox(height: 2),
+                    2.height,
 
                     Text(
                       value,
                       style: AppTextStyle.black12Medium,
                     ),
+
                   ],
                 ),
               ),
@@ -673,11 +655,8 @@ class _CommonSearchTile extends StatelessWidget {
 
 ///Location Dialog
 class CommonLocationDialog {
-
   static Future<void> show({
-
     required BuildContext context,
-
     required Function(
         LocationModel model,
         ) onSelect,
@@ -708,27 +687,19 @@ class CommonLocationDialog {
           ) {
 
         return Scaffold(
-
           backgroundColor: Colors.white,
-
           resizeToAvoidBottomInset: true,
-
           body: SafeArea(
-
             child: Column(
-
               children: [
 
                 /// HEADER
                 Padding(
-
                   padding: const EdgeInsets.symmetric(
                       vertical: 20,
                       horizontal: 16
                   ),
-
                   child: Row(
-
                     children: [
 
                       /// TITLE
@@ -741,7 +712,6 @@ class CommonLocationDialog {
 
                       /// CLOSE
                       InkWell(
-
                         onTap: () {
 
                           controller.clearData();
@@ -749,7 +719,6 @@ class CommonLocationDialog {
                           Get.back();
 
                         },
-
                         child: const Icon(
                           Icons.close,
                           size: 26,
@@ -766,7 +735,7 @@ class CommonLocationDialog {
                   color: Colors.grey.shade300,
                 ),
 
-                const SizedBox(height: 20),
+                20.height,
 
                 /// SEARCH FIELD
 
@@ -861,8 +830,8 @@ class CommonLocationDialog {
                                 borderRadius:
                                 BorderRadius.circular(10),
                               ),
-                              child: isEmpty
-                                  ? Row(
+                              child: isEmpty ?
+                              Row(
                                 children: [
 
                                   Icon(
@@ -894,7 +863,6 @@ class CommonLocationDialog {
                     horizontal: 16
                 ),
 
-
                 /// SEARCH RESULT TITLE
                 const Align(
                   alignment: Alignment.centerLeft,
@@ -904,7 +872,7 @@ class CommonLocationDialog {
                       bottom: 12,
                     ),
                     child: Text(
-                      "SEARCH RESULTS",
+                      AppStrings.searchResults,
                       style: TextStyle(
                         fontSize: 12,
                         letterSpacing: 1.2,
@@ -917,14 +885,12 @@ class CommonLocationDialog {
                     horizontal: 20
                 ),
 
-
                 /// LOCATION LIST
                 Expanded(
                   child: Obx(() {
 
                     /// LOADING
                     if (controller.isLoading.value) {
-
                       return const Center(
                         child: CircularProgressIndicator(),
                       );
@@ -978,9 +944,7 @@ class CommonLocationDialog {
 
                           },
                           child: Row(
-
                             children: [
-
                               /// ICON
                               Container(
                                 width: 40,
@@ -996,28 +960,26 @@ class CommonLocationDialog {
                                 ),
                               ),
 
-                              const SizedBox(width: 14),
+                              14.width,
 
                               /// TEXT
                               Expanded(
-
                                 child: Column(
-
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
+
                                     Text(
                                       item.label ?? "",
                                       style: AppTextStyle.black16SemiBold,
                                     ),
 
-                                    const SizedBox(
-                                        height: 4
-                                    ),
+                                    4.height,
 
                                     Text(
                                       item.type ?? "",
                                       style: AppTextStyle.greay12Regular,
                                     ),
+
                                   ],
                                 ),
                               ),
@@ -1036,7 +998,6 @@ class CommonLocationDialog {
           ),
         );
       },
-
       transitionBuilder:
           (
           context,
@@ -1068,8 +1029,5 @@ class CommonLocationDialog {
       },
     );
   }
-
-
-
 
 }

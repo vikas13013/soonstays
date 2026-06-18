@@ -323,6 +323,7 @@ class AppTextStyle{
   static const greay11Medium = TextStyle(color:AppColors.grey , fontSize: 11,fontFamily: "Poppins_medium");
   static const greay10Medium = TextStyle(color:AppColors.grey , fontSize: 10,fontFamily: "Poppins_medium");
   static const greay12Medium = TextStyle(color:AppColors.grey , fontSize: 12,fontFamily: "Poppins_medium");
+  static const greay13Medium = TextStyle(color:AppColors.grey , fontSize: 13,fontFamily: "Poppins_medium");
   static const greay14Medium = TextStyle(color:AppColors.grey , fontSize: 14,fontFamily: "Poppins_medium");
   static const greay15Medium = TextStyle(color:AppColors.grey , fontSize: 15,fontFamily: "Poppins_medium");
   static const greay16Medium = TextStyle(color:AppColors.grey , fontSize: 16,fontFamily: "Poppins_medium");

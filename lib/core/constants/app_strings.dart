@@ -16,7 +16,19 @@ class AppStrings {
 
   static const adults = "Adults";
 
+  static const roomsAndGuests = "Rooms & Guests";
+
   static const children = "Children";
+
+  static const child = "Child";
+
+  static const age = "Age";
+
+  static const years = "years";
+
+  static const searchResults = "SEARCH RESULTS";
+
+  static const applySelection = "Apply Selection";
 
   static const rooms = "Rooms";
 
@@ -124,9 +136,15 @@ class AppStrings {
 
   static const legalAndPrivacy = "Legal & Privacy";
 
+  static const legalAndPolicy = "Legal & Policy";
+
   static const copyright2026AllRightsReservedBy = "© Copyright 2026 All Rights Reserved by";
 
   static const adhHospitalityPvtLtd = "ADH HOSPITALITY PVT LTD";
+
+  static const thisDocumentIsAnElectronicRecord = "This document is an electronic record in accordance with the Information Technology Act, 2000 and applicable rules thereunder.";
+
+  static const thisPrivacyPolicyEplains = "This Privacy Policy explains how ADH Hospitality Pvt Ltd collects, uses, stores and protects user information.";
 
   static const home = "Home";
 
@@ -358,7 +376,7 @@ class AppStrings {
 
   static String enterCompanyName = "Enter company name";
 
-  static String registerAsCorporatePartner = "Register as Corporate Partner ->";
+  static String registerAsCorporatePartner = "Register as Corporate Partner";
 
   static String gstBenefit = "GST Benefit";
 
@@ -480,13 +498,11 @@ class AppStrings {
 
   static String enterYouMobileNumberToContinueToSoonStays = "Enter your mobile number to continue to SoonStays";
 
-  static String byContinuingYouAgreeToOur = "By continuing, you agree to our";
+  static String byContinuingYouAgreeToOur = "By continuing, you agree to our ";
 
   static String terms = "Terms";
 
   static String and = "&";
-
-  static String IN = "IN";
 
   static String indiaCode = "+91";
 
@@ -1069,6 +1085,50 @@ class AppStrings {
   static String  business = "BUSINESS";
 
   static String  company = "COMPANY";
+
+  static String  pressBackAgainToExit = "Press back again to exit";
+
+  static String  informationWeCollect = "Information We Collect";
+
+  static String  howWeUseYourInformation = "How We Use Your Information";
+
+  static String  informationSharingAndDisclosure = "Information Sharing & Disclosure";
+
+  static String  dataSecurity = "Data Security";
+
+  static String  yourRightsAndChoices = "Your Rights & Choices";
+
+  static String  cookiesAndTrackingTechnologies = "Cookies & Tracking Technologies";
+
+  static String  changesToThisPolicy = "Changes to This Policy";
+
+  static String  onThisPage = "On this page";
+
+  static String  yourPrivacyIsImportantToUs = "Your privacy is important to us. We are committed to protecting your personal information.";
+
+  static String  welcomeToSoonstays = "Welcome to SoonStays! 👋";
+
+  static String  enterYourMobileNumberToContinue = "Enter your mobile number to continue";
+
+  static String  IN = "🇮🇳";
+
+  static String  yourDataIsSafeAndSecureWithUs = "Your data is safe and secure with us.";
+
+  static String  termsAndPrivacyPolicy = "Terms & Privacy Policy";
+
+  static String  bestPriceGuarantee = "Best Price Guarantee";
+
+  static String  weEnsureYouGetTheMost = "We ensure you get the most\ncompetitive rates for your stay.";
+
+  static String  dedicatedSupport = "24/7 Dedicated Support";
+
+  static String  ourCustomerServiceTeamIs = "Our customer service team is\nalways available to help you.";
+
+  static String  panIndiaNetwork = "Pan-India Network";
+
+  static String  handpickedHotelsAcross = "500+ handpicked hotels across\ntier-1 and tier-2 cities.";
+
+  static String  or = "OR";
 
 }
 

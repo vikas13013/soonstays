@@ -71,7 +71,7 @@ class ContactUsView extends GetView<ContactUsController> {
                             style:  AppTextStyle.secondary16Bold,
                           ),
 
-                          SizedBox(height: 10),
+                          10.height,
 
                           Text(
                             AppStrings.ourSupportTeamIsAvailable,
@@ -260,20 +260,6 @@ class ContactUsView extends GetView<ContactUsController> {
                 height: 40,
                 text: AppStrings.sendMessage,
                 textStyle: AppTextStyle.white14SemiBold,
-              ),
-
-              20.height,
-
-              Text(
-                AppStrings.ourLocation,
-                style: AppTextStyle.black13SemiBold,
-              ),
-
-              5.height,
-
-              CommonChacheImage(
-                Url: "https://i.sstatic.net/HILmr.png",
-                imgHeight: 200
               ),
 
               20.height,

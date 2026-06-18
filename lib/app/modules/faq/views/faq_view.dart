@@ -48,7 +48,7 @@ class FaqView extends GetView<FaqController> {
 
                       ],
                     ),
-                    borderRadius: BorderRadius.all(Radius.circular(10))
+                    borderRadius: BorderRadius.all(Radius.circular(15))
                 ),
                 child: Row(
                   children: [
@@ -167,6 +167,31 @@ Widget CommonFaqExpanded({
         color: AppColors.grey,
       ),),
        expandedCrossAxisAlignment: CrossAxisAlignment.start,
+      tilePadding: const EdgeInsets.only(
+        left: 15,
+        right: 5, // yaha control karo
+      ),
+      dense: true,
+      visualDensity: const VisualDensity(
+        horizontal: -4,
+        vertical: -4,
+      ),
+      childrenPadding: EdgeInsets.symmetric(
+          horizontal: 10,
+          vertical: 10
+      ),
+      shape: RoundedRectangleBorder(
+        side: BorderSide(
+            color: AppColors.white
+        ),
+        borderRadius: BorderRadius.circular(15),
+      ),
+      collapsedShape: RoundedRectangleBorder(
+        side: BorderSide(
+            color: AppColors.white
+        ),
+        borderRadius: BorderRadius.circular(15),
+      ),
       children: [
 
         Column(
@@ -229,31 +254,6 @@ Widget CommonFaqExpanded({
         )
 
       ],
-      tilePadding: const EdgeInsets.only(
-        left: 15,
-        right: 5, // yaha control karo
-      ),
-      dense: true,
-      visualDensity: const VisualDensity(
-        horizontal: -4,
-        vertical: -4,
-      ),
-      childrenPadding: EdgeInsets.symmetric(
-          horizontal: 10,
-          vertical: 10
-      ),
-      shape: RoundedRectangleBorder(
-        side: BorderSide(
-            color: AppColors.white
-        ),
-        borderRadius: BorderRadius.circular(15),
-      ),
-      collapsedShape: RoundedRectangleBorder(
-        side: BorderSide(
-            color: AppColors.white
-        ),
-        borderRadius: BorderRadius.circular(15),
-      ),
     ),
   );
 

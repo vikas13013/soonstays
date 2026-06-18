@@ -291,7 +291,7 @@ CommonAppBar({
     titleSpacing: 0,
     title: Text(
       title,
-      style: titleStyle??AppTextStyle.white20SemiBold,
+      style: titleStyle??AppTextStyle.white18SemiBold,
     ),
     actions: isActionTrue==true?[
 

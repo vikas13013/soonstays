@@ -16,7 +16,6 @@ import 'package:soonstays/core/widgets/image_cache_network.dart';
 import '../../../../core/widgets/common_shimmer.dart';
 import '../../../../core/widgets/common_text_field.dart';
 import '../../../routes/app_pages.dart';
-import '../../search/view/search_view.dart';
 import '../controllers/property_list_controller.dart';
 
 class PropertyListView extends GetView<PropertyListController> {
@@ -30,7 +29,7 @@ class PropertyListView extends GetView<PropertyListController> {
           children: [
 
             Text(
-              "${controller.cityNameController.value}",
+              controller.cityNameController.value,
               style: AppTextStyle.white16SemiBold,
             ),
 
@@ -91,7 +90,6 @@ class PropertyListView extends GetView<PropertyListController> {
                         AppColors.primary,
                         AppColors.primary2,
                         AppColors.primary3,
-
                       ]
                     )
                   ),
@@ -207,7 +205,7 @@ class PropertyListView extends GetView<PropertyListController> {
                                   children: [
 
                                     Text(
-                                      "${data.displayName??""}",
+                                      data.displayName??"",
                                       style: AppTextStyle.primary14SemiBold,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
@@ -224,7 +222,7 @@ class PropertyListView extends GetView<PropertyListController> {
 
                                         Flexible(
                                           child: Text(
-                                            "${data.fullAddress??""}",
+                                            data.fullAddress??"",
                                             style: AppTextStyle.greyDark10Regular,
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
@@ -234,7 +232,7 @@ class PropertyListView extends GetView<PropertyListController> {
                                         InkWell(
                                           onTap: () => CommonLauncher.openMap(latitude: data.latitude!.toDouble(), longitude: data.longitude!.toDouble()),
                                           child: Text(
-                                            "${AppStrings.showOnMap}",
+                                            AppStrings.showOnMap,
                                             style: AppTextStyle.black9Medium.copyWith(
                                                 color: Colors.blueAccent
                                             ),
@@ -252,7 +250,7 @@ class PropertyListView extends GetView<PropertyListController> {
                                       children: [
 
                                         box(
-                                            text: "${data.tags![0]}"
+                                            text: data.tags![0]
                                         ),
 
                                         5.width,
@@ -292,7 +290,7 @@ class PropertyListView extends GetView<PropertyListController> {
                                                                   borderRadius: BorderRadius.circular(5)
                                                               ),
                                                               child: Text(
-                                                                "${data.tags![i]}",
+                                                                data.tags![i],
                                                                 style: AppTextStyle.primary10Medium,
                                                               ),
                                                             );
@@ -469,7 +467,7 @@ Widget box({required String text}){
         borderRadius: BorderRadius.circular(5)
     ),
     child: Text(
-      "${text}",
+      text,
       style: AppTextStyle.primary10Medium,
     ),
   );

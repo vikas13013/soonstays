@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:soonstays/core/constants/app_strings.dart';
 
 import '../utils/common_toast.dart';
 
-class DoubleBackToExit extends StatefulWidget {
+///DashBoardBackExit
+class DashboardBackToExit extends StatefulWidget {
   final Widget child;
-  final String message;
 
-  const DoubleBackToExit({
+  const DashboardBackToExit({
     super.key,
     required this.child,
-    this.message = 'Press back again to exit',
   });
 
   @override
-  State<DoubleBackToExit> createState() =>
-      _DoubleBackToExitState();
+  State<DashboardBackToExit> createState() =>
+      _DashboardBackToExitState();
 }
 
-class _DoubleBackToExitState
-    extends State<DoubleBackToExit> {
+class _DashboardBackToExitState extends State<DashboardBackToExit> {
   DateTime? _lastBackPressed;
 
   @override
@@ -29,18 +28,18 @@ class _DoubleBackToExitState
       onPopInvokedWithResult: (
           bool didPop,
           dynamic result,
-          ) {
+          )
+      {
         if (didPop) return;
 
         final now = DateTime.now();
 
-        if (_lastBackPressed == null ||
-            now.difference(_lastBackPressed!) >
-                const Duration(seconds: 2)) {
+        if (_lastBackPressed == null || now.difference(_lastBackPressed!) > const Duration(seconds: 2)) {
+
           _lastBackPressed = now;
 
           AppToast.show(
-            message: widget.message,
+            message: AppStrings.pressBackAgainToExit,
             type: AppToastType.info,
           );
 
@@ -48,6 +47,7 @@ class _DoubleBackToExitState
         }
 
         SystemNavigator.pop();
+
       },
       child: widget.child,
     );

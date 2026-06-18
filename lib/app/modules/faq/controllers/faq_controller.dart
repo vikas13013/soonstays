@@ -39,11 +39,11 @@ class FaqController extends GetxController {
       "sub_title":AppStrings.guestsMustCarryAValidGovernmentIssued,
       "sub_title2":AppStrings.yourBookingIsConfirmedOncePaymentIsCompleted,
       'faq':[
-        '${AppStrings.aadhaarCard}',
-        '${AppStrings.passport}',
-        '${AppStrings.voterId}',
-        '${AppStrings.drivingLicence}',
-        '${AppStrings.panCardIsNotAcceptedAsValidIdProof}',
+        (AppStrings.aadhaarCard),
+        (AppStrings.passport),
+        (AppStrings.voterId),
+        (AppStrings.drivingLicence),
+        (AppStrings.panCardIsNotAcceptedAsValidIdProof),
       ]
     },
     {
@@ -51,7 +51,7 @@ class FaqController extends GetxController {
       "sub_title":AppStrings.youCanCheckYourBookingDetailsBy,
       "sub_title2":"",
       'faq':[
-        '${AppStrings.loggingIntoYourSoonstaysAccountAndOpening}',
+        (AppStrings.loggingIntoYourSoonstaysAccountAndOpening),
         '${AppStrings.callingOurSupportNumber} ${AppUrls.phoneNumber}',
         '${AppStrings.emailingUsAt} ${AppUrls.supportEmail}'
       ]
@@ -61,9 +61,9 @@ class FaqController extends GetxController {
       "sub_title":AppStrings.standardTimingsAreGenerally,
       "sub_title2":"",
       'faq':[
-        '${AppStrings.checkIn1200PM}',
-        '${AppStrings.checkOut1100AM}',
-        '${AppStrings.timingsMayVaryDependingOnTheHotel}'
+        (AppStrings.checkIn1200PM),
+        (AppStrings.checkOut1100AM),
+        (AppStrings.timingsMayVaryDependingOnTheHotel)
       ]
     },
     {
@@ -73,8 +73,8 @@ class FaqController extends GetxController {
       'faq':[
         '${AppStrings.contactingOurSupportTeamAt} ${AppUrls.phoneNumber}',
         '${AppStrings.sendingACancellationRequestTo} ${AppUrls.supportEmail}',
-        '${AppStrings.usingTheMyBookingsSection}',
-        '${AppStrings.cancellationEligibilityDependsOn}'
+        (AppStrings.usingTheMyBookingsSection),
+        (AppStrings.cancellationEligibilityDependsOn)
       ]
     },
     {
@@ -82,9 +82,9 @@ class FaqController extends GetxController {
       "sub_title":AppStrings.generalCancellationRulesMayInclude,
       "sub_title2":"",
       'faq':[
-        '${AppStrings.moreThan24HoursBeforeCheckIn}',
-        '${AppStrings.within24HoursOfCheckIn}',
-        '${AppStrings.refundsWhenApprovedAreUsuallyProcessedWithin}'
+        (AppStrings.moreThan24HoursBeforeCheckIn),
+        (AppStrings.within24HoursOfCheckIn),
+        (AppStrings.refundsWhenApprovedAreUsuallyProcessedWithin)
       ]
     },
     {
@@ -106,7 +106,7 @@ class FaqController extends GetxController {
       'faq':[
         "${AppStrings.emailUsAt} ${AppUrls.supportEmail}",
         "${AppStrings.call} ${AppUrls.phoneNumber}",
-        "${AppStrings.ourPartnershipTeamWillGuideYouThroughThe}",
+        (AppStrings.ourPartnershipTeamWillGuideYouThroughThe),
       ]
     },
     {
@@ -132,11 +132,11 @@ class FaqController extends GetxController {
       "sub_title":AppStrings.youCanPayUsing,
       "sub_title2":"",
       'faq':[
-        "${AppStrings.creditCardAndDebitCard}",
-        "${AppStrings.UPI}",
-        "${AppStrings.netBanking}",
-        "${AppStrings.digitalWallets}",
-        "${AppStrings.payAtHotelSelectedPropertiesOnly}",
+        (AppStrings.creditCardAndDebitCard),
+        (AppStrings.UPI),
+        (AppStrings.netBanking),
+        (AppStrings.digitalWallets),
+        (AppStrings.payAtHotelSelectedPropertiesOnly),
       ]
     },
   ].obs;

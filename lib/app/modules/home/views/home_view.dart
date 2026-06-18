@@ -7,7 +7,6 @@ import 'package:soonstays/core/constants/app_strings.dart';
 import 'package:soonstays/core/constants/app_text_styles.dart';
 import 'package:soonstays/core/widgets/common_buttons.dart';
 import 'package:soonstays/core/widgets/common_rating_idicator.dart';
-import 'package:soonstays/core/widgets/drawer.dart';
 import 'package:soonstays/core/widgets/image_cache_network.dart';
 import '../../../../core/arguments/property_details_arguments.dart';
 import '../../../../core/constants/app_assets.dart';
@@ -15,6 +14,7 @@ import '../../../../core/constants/app_urls.dart';
 import '../../../../core/get_storage/session_manager.dart';
 import '../../../../core/utils/common_launcher.dart';
 import '../../../../core/widgets/common_appbar.dart';
+import '../../../../core/widgets/double_back_exit.dart';
 import '../../../data/model/property_list/property_list_model.dart';
 import '../../../data/model/search_criteria_model.dart';
 import '../../../routes/app_pages.dart';
@@ -31,7 +31,6 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      // drawer: CommonDrawer(),
       body: SafeArea(
         top: false,
         bottom: true,

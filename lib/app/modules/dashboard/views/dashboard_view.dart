@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:soonstays/app/modules/menu/views/menu_view.dart';
 import 'package:soonstays/core/constants/app_colors.dart';
+import 'package:soonstays/core/constants/app_size.dart';
 import 'package:soonstays/core/constants/app_strings.dart';
-
 import '../../../../core/widgets/double_back_exit.dart';
 import '../../home/views/home_view.dart';
 import '../../my_trips/views/my_trips_view.dart';
-import '../../user_profile/views/user_profile_view.dart';
 import '../controllers/dashboard_controller.dart';
 
 class DashboardView extends GetView<DashboardController> {
@@ -15,7 +14,7 @@ class DashboardView extends GetView<DashboardController> {
 
   @override
   Widget build(BuildContext context) {
-    return DoubleBackToExit(
+    return DashboardBackToExit(
       child: Scaffold(
         body: Stack(
           children: [
@@ -68,6 +67,10 @@ class CommonBottomNav extends GetView<DashboardController> {
       height: 80,
       decoration: BoxDecoration(
         color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(40),
+          topRight: Radius.circular(40)
+        ),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(.08),
@@ -79,21 +82,22 @@ class CommonBottomNav extends GetView<DashboardController> {
       child: Obx(
             () => Row(
           children: [
+
             _navItem(
-              icon: Icons.home_rounded,
-              title: "${AppStrings.home}",
+              icon: Icons.home_outlined,
+              title: AppStrings.home,
               index: 0,
             ),
 
             _navItem(
-              icon: Icons.luggage_rounded ,
-              title: "${AppStrings.myTrips}",
+              icon: Icons.luggage_outlined,
+              title: AppStrings.myTrips,
               index: 1,
             ),
 
             _navItem(
-              icon: Icons.grid_view_rounded,
-              title: "${AppStrings.more}",
+              icon: Icons.grid_view_outlined,
+              title: AppStrings.more,
               index: 2,
             ),
           ],
@@ -111,9 +115,7 @@ class CommonBottomNav extends GetView<DashboardController> {
 
     return Expanded(
       child: InkWell(
-        onTap: () {
-          controller.changeTab(index);
-        },
+        onTap: () => controller.changeTab(index),
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
         child: SizedBox(
@@ -136,7 +138,7 @@ class CommonBottomNav extends GetView<DashboardController> {
                 ),
               ),
 
-              const SizedBox(height: 8),
+              8.height,
 
               /// Active Background
               AnimatedContainer(
@@ -162,7 +164,7 @@ class CommonBottomNav extends GetView<DashboardController> {
                 ),
               ),
 
-              const SizedBox(height: 4),
+              4.height,
 
               Text(
                 title,

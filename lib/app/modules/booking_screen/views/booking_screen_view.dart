@@ -19,7 +19,6 @@ class BookingScreenView extends GetView<BookingScreenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: AppColors.white,
       appBar: CommonAppBar(title: AppStrings.reviewDetails),
       body: Container(
         padding: EdgeInsets.symmetric(

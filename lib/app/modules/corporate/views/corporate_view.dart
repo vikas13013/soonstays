@@ -25,9 +25,9 @@ class CorporateView extends GetView<CorporateController> {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: CommonAppBar(
-          title: "${AppStrings.corporatePartner}"
+          title: AppStrings.corporatePartner,
+          isActionTrue: true
       ),
-      drawer: CommonDrawer(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -42,8 +42,8 @@ class CorporateView extends GetView<CorporateController> {
                   padding: const EdgeInsets.only(
                     left: 10,
                     right: 10,
-                    top: 60,
-                    bottom: 120,
+                    top: 40,
+                    bottom: 70,
                   ),
                   decoration: BoxDecoration(
                     image: DecorationImage(
@@ -57,7 +57,7 @@ class CorporateView extends GetView<CorporateController> {
                       /// BADGE
                       Container(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 22,
+                          horizontal: 15,
                           vertical: 10,
                         ),
                         decoration: BoxDecoration(
@@ -190,11 +190,9 @@ class CorporateView extends GetView<CorporateController> {
                   CrossAxisAlignment.start,
                   children: [
 
-                    10.height,
-
                     Text(
                       AppStrings.partnerWithSoonstays,
-                      style: AppTextStyle.primary20ExtraBold,
+                      style: AppTextStyle.primary20Bold,
                     ),
 
                     5.height,
@@ -203,13 +201,12 @@ class CorporateView extends GetView<CorporateController> {
                       AppStrings.fillTheFormAndWell,
                       style: AppTextStyle.greyDark12Light,
                     ),
-                    // 0xff64748B
 
                     20.height,
 
                     Text(
                       AppStrings.name.toUpperCase(),
-                      style: AppTextStyle.greay14Medium,
+                      style: AppTextStyle.greay13Medium,
                     ),
 
                     5.height,
@@ -229,7 +226,7 @@ class CorporateView extends GetView<CorporateController> {
 
                     Text(
                       AppStrings.mobileNumber.toUpperCase(),
-                      style: AppTextStyle.greay14Medium,
+                      style: AppTextStyle.greay13Medium,
                     ),
 
                     5.height,
@@ -253,7 +250,7 @@ class CorporateView extends GetView<CorporateController> {
 
                     Text(
                       AppStrings.email.toUpperCase(),
-                      style: AppTextStyle.greay14Medium,
+                      style: AppTextStyle.greay13Medium,
                     ),
 
                     5.height,
@@ -272,7 +269,7 @@ class CorporateView extends GetView<CorporateController> {
 
                     Text(
                       AppStrings.companyName.toUpperCase(),
-                      style: AppTextStyle.greay14Medium,
+                      style: AppTextStyle.greay13Medium,
                     ),
 
                     5.height,
@@ -368,14 +365,14 @@ class CorporateView extends GetView<CorporateController> {
                     style: AppTextStyle.primary18SemiBold,
                   ),
 
-                  10.height,
+                  5.height,
 
                   Text(
                     AppStrings.ourCorporateSalesExpertsCanHelp,
                     style: AppTextStyle.primary12Regular.copyWith(color: AppColors.blue),
                   ),
 
-                  26.height,
+                  20.height,
 
                   /// CALL CARD
                   Container(
@@ -428,7 +425,7 @@ class CorporateView extends GetView<CorporateController> {
                              4.height,
 
                               Text(
-                                "${AppUrls.phoneNumber}",
+                                AppUrls.phoneNumber,
                                 style: AppTextStyle.black16Bold,
                               ),
                             ],
@@ -505,14 +502,12 @@ class _BenefitCard extends StatelessWidget {
 
   final IconData icon;
   final Color iconColor;
-
   final String title;
   final String description;
 
   const _BenefitCard({
     required this.icon,
     required this.iconColor,
-
     required this.title,
     required this.description,
   });
@@ -562,7 +557,7 @@ class _BenefitCard extends StatelessWidget {
 
           Text(
             description,
-            style: AppTextStyle.greyDark11SemiBold,
+            style: AppTextStyle.greyDark12Regular,
           ),
 
         ],

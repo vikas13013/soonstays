@@ -5,6 +5,7 @@ import 'package:soonstays/core/constants/app_colors.dart';
 import 'package:soonstays/core/constants/app_size.dart';
 import 'package:soonstays/core/constants/app_strings.dart';
 import 'package:soonstays/core/constants/app_text_styles.dart';
+import 'package:soonstays/core/constants/app_urls.dart';
 import 'package:soonstays/core/widgets/common_appbar.dart';
 import 'package:soonstays/core/widgets/common_buttons.dart';
 import 'package:soonstays/core/widgets/common_footer.dart';
@@ -24,8 +25,10 @@ class LoginView extends GetView<LoginController> {
 
     return Scaffold(
       backgroundColor: Colors.transparent,
-      appBar: CommonAppBar(title: '${AppStrings.login}'),
-      drawer: CommonDrawer(),
+      appBar: CommonAppBar(
+          title: AppStrings.login,
+          isActionTrue: true
+      ),
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -53,7 +56,6 @@ class LoginView extends GetView<LoginController> {
               CrossAxisAlignment.start,
               children: [
 
-
                 /// Login Card
                 Stack(
                   children: [
@@ -77,7 +79,7 @@ class LoginView extends GetView<LoginController> {
                                 children: [
 
                                   TextSpan(
-                                      text: "${AppStrings.soonstays}",
+                                      text: AppStrings.soonstays,
                                       style: AppTextStyle.secondary24ExtraBold
                                   )
 
@@ -104,7 +106,7 @@ class LoginView extends GetView<LoginController> {
                   ],
                 ),
 
-                const SizedBox(height: 20),
+                20.height,
 
                 /// LOGIN CARD
                 Container(
@@ -151,21 +153,21 @@ class LoginView extends GetView<LoginController> {
                               children: [
 
                                 Text(
-                                  "Welcome to SoonStays! 👋",
+                                  AppStrings.welcomeToSoonstays,
                                   style: AppTextStyle.secondary12Medium,
                                 ),
 
-                                const SizedBox(height: 10),
+                                10.height,
 
-                                const Text(
-                                  "Login or Sign Up",
+                                Text(
+                                  AppStrings.loginOrSignUp,
                                   style: AppTextStyle.primary20Bold,
                                 ),
 
-                                const SizedBox(height: 5),
+                                5.height,
 
                                 Text(
-                                  "Enter your mobile number to continue",
+                                  AppStrings.enterYourMobileNumberToContinue,
                                   style: AppTextStyle.primary10Light,
                                 ),
 
@@ -185,7 +187,7 @@ class LoginView extends GetView<LoginController> {
                         ],
                       ),
 
-                      const SizedBox(height: 15),
+                      15.height,
 
                       /// MOBILE FIELD
                       Container(
@@ -206,16 +208,16 @@ class LoginView extends GetView<LoginController> {
                               child: Row(
                                 children: [
 
-                                  const Text(
-                                    "🇮🇳",
-                                    style: TextStyle(fontSize: 20,
+                                  Text(
+                                    AppStrings.IN,
+                                    style: const TextStyle(fontSize: 20,
                                     ),
                                   ),
 
                                   const SizedBox(width: 5),
 
                                   const Text(
-                                    "+91",
+                                    AppUrls.phoneCode,
                                     style: AppTextStyle.primary14SemiBold,
                                   ),
                                 ],
@@ -249,7 +251,7 @@ class LoginView extends GetView<LoginController> {
                                 },
                                 keyboardType: TextInputType.phone,
                                 decoration: InputDecoration(
-                                  hintText: "Enter 10-digit mobile number",
+                                  hintText: AppStrings.enter10DigitNumber,
                                   hintStyle: AppTextStyle.primary14Light.copyWith(
                                       color: Colors.black54
                                   ),
@@ -264,19 +266,19 @@ class LoginView extends GetView<LoginController> {
                         ),
                       ),
 
-                      const SizedBox(height: 15),
+                      15.height,
 
                       /// BUTTON
                       Obx(() => CommonButton(
                         onTap: () => controller.isDisable.value==false?null:controller.sendOtp(),
                         height: 40,
-                        text: "${AppStrings.getOTP}",
+                        text: AppStrings.getOTP,
                         textStyle: AppTextStyle.white14SemiBold,
                         color1: controller.isDisable.value==false?AppColors.primary.withOpacity(0.4):AppColors.primary,
                         color2: controller.isDisable.value==false?AppColors.blue.withOpacity(0.4):AppColors.blue,
                       ),),
 
-                      const SizedBox(height: 10),
+                      10.height,
 
                       /// SECURITY
                       Row(
@@ -291,16 +293,16 @@ class LoginView extends GetView<LoginController> {
                             size: 12,
                           ),
 
-                          const SizedBox(width: 5),
+                          5.width,
 
                           Text(
-                            "Your data is safe and secure with us.",
+                            AppStrings.yourDataIsSafeAndSecureWithUs,
                             style: AppTextStyle.primary12Light,
                           )
                         ],
                       ),
 
-                      const SizedBox(height: 15),
+                      15.height,
 
                       /// TERMS
                       Center(
@@ -311,11 +313,11 @@ class LoginView extends GetView<LoginController> {
                             children: [
 
                               TextSpan(
-                                text: "By continuing, you agree to our ",
+                                text: AppStrings.byContinuingYouAgreeToOur,
                               ),
 
                               TextSpan(
-                                text: "Terms & Privacy Policy",
+                                text: AppStrings.termsAndPrivacyPolicy,
                                 style: AppTextStyle.black12Regular.copyWith(
                                     color: AppColors.blue1
                                 ),
@@ -334,30 +336,28 @@ class LoginView extends GetView<LoginController> {
                 /// FEATURE CARD
                 featureCard(
                   icon: Icons.shield_outlined,
-                  title: "Best Price Guarantee",
-                  subtitle:
-                  "We ensure you get the most\ncompetitive rates for your stay.",
+                  title: AppStrings.bestPriceGuarantee,
+                  subtitle: AppStrings.weEnsureYouGetTheMost,
                 ),
 
-                const SizedBox(height: 10),
+                10.height,
 
                 featureCard(
                   icon: Icons.support_agent,
-                  title: "24/7 Dedicated Support",
-                  subtitle:
-                  "Our customer service team is\nalways available to help you.",
+                  title: AppStrings.dedicatedSupport,
+                  subtitle: AppStrings.ourCustomerServiceTeamIs,
                 ),
 
-                const SizedBox(height: 10),
+                10.height,
 
                 featureCard(
                   icon: Icons.location_on_outlined,
-                  title: "Pan-India Network",
-                  subtitle:
-                  "500+ handpicked hotels across\ntier-1 and tier-2 cities.",
+                  title: AppStrings.panIndiaNetwork,
+                  subtitle: AppStrings.handpickedHotelsAcross,
                 ),
 
-                const SizedBox(height: 30),
+                30.height,
+
               ],
             ),
           ),

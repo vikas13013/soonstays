@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:soonstays/core/constants/app_assets.dart';
+import 'package:soonstays/core/constants/app_size.dart';
+import 'package:soonstays/core/constants/app_strings.dart';
 import 'package:soonstays/core/constants/app_text_styles.dart';
 
 import '../../../../core/constants/app_colors.dart';
@@ -15,7 +17,7 @@ class LegalPolicyView extends GetView<LegalPolicyController> {
     return Scaffold(
       backgroundColor: const Color(0xffF7F8FC),
       appBar: CommonAppBar(
-          title: "Legal & Policy",
+          title: AppStrings.legalAndPolicy,
           isActionTrue: true
       ),
       body: SafeArea(
@@ -25,23 +27,24 @@ class LegalPolicyView extends GetView<LegalPolicyController> {
 
               const _HeaderSection(),
 
-              const SizedBox(height: 16),
+              16.height,
 
               const _InfoCard(),
 
-              const SizedBox(height: 16),
+              16.height,
 
               const _PrivacyCard(),
 
-              const SizedBox(height: 16),
+              16.height,
 
-              const _OnThisPageCard(),
+              _OnThisPageCard(),
 
-              const SizedBox(height: 16),
+              16.height,
 
               const _BottomInfoCard(),
 
-              const SizedBox(height: 100),
+              20.height,
+
             ],
           ),
         ),
@@ -78,23 +81,23 @@ class _HeaderSection extends StatelessWidget {
 
           ],
         ),
-
-        borderRadius: BorderRadius.all(Radius.circular(10)),
+        borderRadius: BorderRadius.all(Radius.circular(15)),
       ),
       child: Row(
         children: [
 
           Expanded(
             child: Text(
-              "ADH Hospitality Pvt Ltd - SoonStays",
-              style: AppTextStyle.white20Bold,
+              "${AppStrings.adhHospitalityPvtLtd} - ${AppStrings.soonStays.toUpperCase()}",
+              style: AppTextStyle.white18Bold,
             ),
           ),
 
           Image.asset(
-            "${AppAssets.legalPolicy}",
+            AppAssets.legalPolicy,
             height: 80,
           ),
+
         ],
       ),
     );
@@ -106,14 +109,10 @@ Widget commonCard({
 }) {
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 16),
-
     padding: const EdgeInsets.all(18),
-
     decoration: BoxDecoration(
       color: Colors.white,
-
       borderRadius: BorderRadius.circular(24),
-
       boxShadow: [
         BoxShadow(
           color: Colors.black.withOpacity(.05),
@@ -144,70 +143,8 @@ class _InfoCard extends StatelessWidget {
 
           const Expanded(
             child: Text(
-              "This document is an electronic record in accordance with the Information Technology Act, 2000 and applicable rules thereunder.",
+              AppStrings.thisDocumentIsAnElectronicRecord,
               style: AppTextStyle.black13Regular,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _AgreementCard extends StatelessWidget {
-  const _AgreementCard({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16),
-      padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF4F1FF),
-        borderRadius: BorderRadius.circular(22),
-      ),
-      child: Row(
-        children: [
-
-          Container(
-            height: 50,
-            width: 50,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(14),
-            ),
-            child: const Icon(
-              Icons.handshake_outlined,
-              color: Color(0xFF5B45FF),
-            ),
-          ),
-
-          const SizedBox(width: 15),
-
-          const Expanded(
-            child: Text(
-              "By using SoonStays, you agree to the terms described in this Privacy Policy.",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: Color(0xFF1A1A1A),
-              ),
-            ),
-          ),
-
-          const SizedBox(width: 10),
-
-          Container(
-            height: 60,
-            width: 60,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(14),
-            ),
-            child: const Icon(
-              Icons.verified_user_outlined,
-              color: Color(0xFF5B45FF),
-              size: 30,
             ),
           ),
         ],
@@ -232,7 +169,7 @@ class _PrivacyCard extends StatelessWidget {
 
           const Expanded(
             child: Text(
-              "This Privacy Policy explains how ADH Hospitality Pvt Ltd collects, uses, stores and protects user information.",
+              AppStrings.thisPrivacyPolicyEplains,
               style: AppTextStyle.black13Regular,
             ),
           ),
@@ -244,17 +181,17 @@ class _PrivacyCard extends StatelessWidget {
 
 
 class _OnThisPageCard extends StatelessWidget {
-  const _OnThisPageCard();
+  _OnThisPageCard();
 
-  final List<String> items = const [
-    "Information We Collect",
-    "How We Use Your Information",
-    "Information Sharing & Disclosure",
-    "Data Security",
-    "Your Rights & Choices",
-    "Cookies & Tracking Technologies",
-    "Changes to This Policy",
-    "Contact Us",
+  final List<String> items = [
+    (AppStrings.informationWeCollect),
+    (AppStrings.howWeUseYourInformation),
+    (AppStrings.informationSharingAndDisclosure),
+    (AppStrings.dataSecurity),
+    (AppStrings.yourRightsAndChoices),
+    (AppStrings.cookiesAndTrackingTechnologies),
+    (AppStrings.changesToThisPolicy),
+    (AppStrings.contactUs),
   ];
 
   @override
@@ -264,8 +201,8 @@ class _OnThisPageCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
 
-          const Text(
-            "On this page",
+          Text(
+            "${AppStrings.onThisPage}",
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.w700,
@@ -310,19 +247,19 @@ class _BottomInfoCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
 
-      child: const Row(
+      child: Row(
         children: [
 
-          Icon(
+          const Icon(
             Icons.lock,
             color: AppColors.blue,
           ),
 
-          SizedBox(width: 15),
+          const SizedBox(width: 15),
 
           Expanded(
             child: Text(
-              "Your privacy is important to us. We are committed to protecting your personal information.",
+              "${AppStrings.yourPrivacyIsImportantToUs}",
               style: AppTextStyle.black13Regular,
             ),
           ),
@@ -344,25 +281,6 @@ Widget _iconCircle(IconData icon) {
     child: Icon(
       icon,
       color: AppColors.blue,
-    ),
-  );
-}
-
-Widget _circleButton(IconData icon) {
-  return Container(
-    height: 50,
-    width: 50,
-
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(14),
-      border: Border.all(
-        color: Colors.white24,
-      ),
-    ),
-
-    child: Icon(
-      icon,
-      color: Colors.white,
     ),
   );
 }

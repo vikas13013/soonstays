@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:soonstays/core/constants/app_assets.dart';
 import 'package:soonstays/core/constants/app_size.dart';
 import 'package:soonstays/core/constants/app_text_styles.dart';
 
@@ -72,11 +73,26 @@ class AppToast {
             children: [
 
               /// Accent Line
+              // Container(
+              //   width: 4,
+              //   decoration: BoxDecoration(
+              //     color: accentColor,
+              //     borderRadius: BorderRadius.circular(10),
+              //   ),
+              // ),
+
               Container(
-                width: 4,
+                height: 25,
+                width: 25,
                 decoration: BoxDecoration(
-                  color: accentColor,
-                  borderRadius: BorderRadius.circular(10),
+                  shape: BoxShape.circle,
+                  // border: BoxBorder.all(
+                  //   color: accentColor,
+                  //   width: 1
+                  // ),
+                  image: DecorationImage(
+                      image: AssetImage(AppAssets.logo3)
+                  )
                 ),
               ),
 

@@ -1,10 +1,14 @@
 import 'dart:convert';
 
+import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:soonstays/core/constants/app_colors.dart';
+import 'package:soonstays/core/constants/app_size.dart';
+import 'package:soonstays/core/constants/app_strings.dart';
+import 'package:soonstays/core/widgets/common_buttons.dart';
 import 'package:soonstays/core/widgets/common_loader.dart';
 
 import '../../../../core/get_storage/storage_keys.dart';
@@ -68,60 +72,228 @@ class SearchViewController extends GetxController{
   Future<void> openDatePicker(
       BuildContext context,
       ) async {
+    List<DateTime?> values = [
+      checkInDate.value,
+      checkOutDate.value,
+    ];
 
-    if (isPickerOpening.value) return;
-
-    isPickerOpening.value = true;
-
-    try {
-
-      final picked = await showDateRangePicker(
-        context: context,
-        firstDate: DateTime.now(),
-        lastDate: DateTime(2030),
-        builder: (context, child) {
-          return Theme(
-            data: ThemeData.light().copyWith(
-              primaryColor: AppColors.primary3,
-              cardColor: AppColors.white,
-              buttonTheme: const ButtonThemeData(
-                  textTheme: ButtonTextTheme.primary
-              ),
-              colorScheme: const ColorScheme.light(
-                background: AppColors.white,
-                /// selected start/end date
-                primary: AppColors.primary3,
-                /// range fill color
-                secondary: Color(
-                  0xffDAD3FF,
-                ),
-                /// text color
-                onPrimary: Colors.white,
-              ),
-            ),
-            child: child!,
-          );
-        },
-        initialDateRange: DateTimeRange(
-          start: checkInDate.value,
-          end: checkOutDate.value,
+    await showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(24),
         ),
-      );
+      ),
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            final nights = values.length >= 2 &&
+                values[0] != null &&
+                values[1] != null
+                ? values[1]!
+                .difference(values[0]!)
+                .inDays
+                : 0;
 
-      if (picked != null) {
+            return SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
 
-        checkInDate.value = picked.start;
+                    Container(
+                      width: 50,
+                      height: 5,
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade300,
+                        borderRadius:
+                        BorderRadius.circular(20),
+                      ),
+                    ),
 
-        checkOutDate.value = picked.end;
+                    10.height,
 
-        dateData();
+                    const Text(
+                      "Select Dates",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
 
-      }
+                    10.height,
 
-    } finally {
+                    Row(
+                      children: [
 
-      isPickerOpening.value = false;
-    }
+                        Expanded(
+                          child: _dateCard(
+                            "Check-In",
+                            values.isNotEmpty &&
+                                values[0] != null
+                                ? _formatDate(
+                              values[0]!,
+                            )
+                                : "Select Date",
+                          ),
+                        ),
+
+                        const SizedBox(width: 10),
+
+                        Expanded(
+                          child: _dateCard(
+                            "Check-Out",
+                            values.length > 1 &&
+                                values[1] != null
+                                ? _formatDate(
+                              values[1]!,
+                            )
+                                : "Select Date",
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    CalendarDatePicker2(
+                      config: CalendarDatePicker2WithActionButtonsConfig(
+                        calendarType: CalendarDatePicker2Type.range,
+                        selectedDayHighlightColor: AppColors.primary2,
+                        selectedRangeHighlightColor: AppColors.lightBg,
+                        centerAlignModePicker: true,
+                        daySplashColor: AppColors.lightBg,
+                        dayBorderRadius: BorderRadius.circular(12),
+                        firstDate: DateTime.now(),
+                        lastDate: DateTime(
+                          2035,
+                        ),
+                      ),
+                      value: values,
+                      onValueChanged: (dates,) {
+                        setState(() {
+                          values = dates;
+                        });
+                      },
+                    ),
+
+                    const SizedBox(height: 10),
+
+                    if (nights > 0)
+                      Container(
+                        width: double.infinity,
+                        padding:
+                        const EdgeInsets.all(14),
+                        decoration: BoxDecoration(
+                          color: AppColors.lightBg,
+                          borderRadius: BorderRadius.circular(12,),
+                        ),
+                        child: Text(
+                          "$nights ${AppStrings.night}${nights > 1 ? 's' : ''}",
+                          style: const TextStyle(
+                            fontWeight:
+                            FontWeight.w600,
+                          ),
+                        ),
+                      ),
+
+                    16.height,
+
+                    CommonButton(
+                      onTap: () {
+
+                        if (values.length >= 2 &&
+                            values[0] != null &&
+                            values[1] != null) {
+
+                          checkInDate.value =
+                          values[0]!;
+
+                          checkOutDate.value =
+                          values[1]!;
+
+                          dateData();
+
+                          Get.back();
+                        }
+
+                      },
+                      text: "${AppStrings.apply}",
+                      height: 40,
+                    ),
+
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  Widget _dateCard(
+      String title,
+      String value,
+      ) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: const Color(
+            0xffE5E7EB,
+          ),
+        ),
+        borderRadius:
+        BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment:
+        CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 12,
+              color: Colors.grey,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            value,
+            style: const TextStyle(
+              fontWeight:
+              FontWeight.w600,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  String _formatDate(
+      DateTime date,
+      ) {
+    const months = [
+      '',
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
+    ];
+
+    return "${date.day} ${months[date.month]}";
   }
 
 

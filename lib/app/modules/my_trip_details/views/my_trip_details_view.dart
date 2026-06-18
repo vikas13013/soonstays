@@ -333,7 +333,7 @@ class HotelDetailsCard extends StatelessWidget {
                     /// CHECK IN
                     Expanded(
                       child: _DateInfoWidget(
-                        title: "CHECK-IN",
+                        title: AppStrings.checkIn.toUpperCase(),
                         weekDay: BookingDateHelper.getWeekDay(data.checkinDate ?? ""),
                         day: BookingDateHelper.getDay(data.checkinDate ?? ""),
                         monthYear: BookingDateHelper.getMonthYear(data.checkinDate ?? ""),
@@ -341,12 +341,12 @@ class HotelDetailsCard extends StatelessWidget {
                       ),
                     ),
 
-                    const SizedBox(width: 12),
+                    12.width,
 
                     /// CHECK OUT
                     Expanded(
                       child: _DateInfoWidget(
-                        title: "CHECK-IN",
+                        title: AppStrings.checkOut.toUpperCase(),
                         weekDay: BookingDateHelper.getWeekDay(data.checkoutDate ?? ""),
                         day: BookingDateHelper.getDay(data.checkoutDate ?? ""),
                         monthYear: BookingDateHelper.getMonthYear(data.checkoutDate ?? ""),
@@ -360,16 +360,15 @@ class HotelDetailsCard extends StatelessWidget {
                 18.height,
 
                 Row(
-                  crossAxisAlignment:
-                  CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
 
                     /// GUEST
                     Expanded(
                       child: Row(
-                        crossAxisAlignment:
-                        CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+
                           Container(
                             width: 30,
                             height: 30,
@@ -402,6 +401,7 @@ class HotelDetailsCard extends StatelessWidget {
                                   "${data.totalGuests.toString()} ${AppStrings.guestsStay}",
                                   style: AppTextStyle.black14SemiBold,
                                 ),
+
                               ],
                             ),
                           ),
@@ -409,14 +409,13 @@ class HotelDetailsCard extends StatelessWidget {
                       ),
                     ),
 
-                    const SizedBox(width: 12),
+                    12.width,
 
                     /// ROOM
                     Expanded(
                       flex: 2,
                       child: Row(
-                        crossAxisAlignment:
-                        CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
 
                           Container(
@@ -460,6 +459,7 @@ class HotelDetailsCard extends StatelessWidget {
                                     color: AppColors.blue
                                   ),
                                 ),
+
                               ],
                             ),
                           ),
@@ -470,6 +470,7 @@ class HotelDetailsCard extends StatelessWidget {
                 ),
 
                 10.height,
+
               ],
             ),
           ),
@@ -563,6 +564,7 @@ class _DateInfoWidget extends StatelessWidget {
                 ],
               ),
             )
+
           ],
         )
       ],
@@ -628,6 +630,7 @@ class GuestInformationCard extends StatelessWidget {
                 AppStrings.guestInformation,
                 style: AppTextStyle.black18SemiBold,
               ),
+
             ],
           ),
 
@@ -788,12 +791,13 @@ class _HotelPoliciesCardState extends State<HotelPoliciesCard> {
                 ),
               ),
 
-              const SizedBox(width: 14),
+              14.width,
 
               Text(
                 AppStrings.hotelPolicies,
                 style: AppTextStyle.black18SemiBold,
               ),
+
             ],
           ),
 
@@ -849,8 +853,7 @@ class CancellationPolicyCard extends StatelessWidget {
                 height: 30,
                 decoration: BoxDecoration(
                   color: const Color(0xffECFFF4),
-                  borderRadius:
-                  BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(16),
                 ),
                 child: const Icon(
                   Icons.assignment_return_outlined,
@@ -859,7 +862,7 @@ class CancellationPolicyCard extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(width: 14),
+              14.width,
 
               const Expanded(
                 child: Text(
@@ -867,6 +870,7 @@ class CancellationPolicyCard extends StatelessWidget {
                   style: AppTextStyle.black18SemiBold,
                 ),
               ),
+
             ],
           ),
 
@@ -884,8 +888,7 @@ class CancellationPolicyCard extends StatelessWidget {
               ),
             ),
             child: Row(
-              crossAxisAlignment:
-              CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
                 Container(
@@ -902,7 +905,7 @@ class CancellationPolicyCard extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(width: 14),
+                14.width,
 
                 Expanded(
                   child: Column(
@@ -922,6 +925,7 @@ class CancellationPolicyCard extends StatelessWidget {
                     ],
                   ),
                 ),
+
               ],
             ),
           ),

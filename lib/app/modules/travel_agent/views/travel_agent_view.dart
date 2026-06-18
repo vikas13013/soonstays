@@ -27,8 +27,10 @@ class TravelAgentView extends GetView<TravelAgentController> {
 
     return Scaffold(
       backgroundColor: AppColors.white,
-      appBar: CommonAppBar(title: AppStrings.travelAgent),
-      drawer: CommonDrawer(),
+      appBar: CommonAppBar(
+          title: AppStrings.travelAgent,
+          isActionTrue: true
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,6 +111,7 @@ class TravelAgentView extends GetView<TravelAgentController> {
                         textAlign: TextAlign.center,
                         style: AppTextStyle.primary12Regular,
                       ),
+
                     ],
                   ),
                 ),
@@ -551,7 +554,6 @@ class _TopFeature extends StatelessWidget {
             color: iconColor.withOpacity(.1),
             shape: BoxShape.circle,
           ),
-
           child: Icon(
             icon,
             color: iconColor,
@@ -578,14 +580,12 @@ class _BenefitCard extends StatelessWidget {
 
   final IconData icon;
   final Color iconColor;
-
   final String title;
   final String description;
 
   const _BenefitCard({
     required this.icon,
     required this.iconColor,
-
     required this.title,
     required this.description,
   });

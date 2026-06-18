@@ -6,6 +6,7 @@ import 'package:soonstays/core/constants/app_colors.dart';
 import 'package:soonstays/core/constants/app_size.dart';
 import 'package:soonstays/core/constants/app_strings.dart';
 import 'package:soonstays/core/constants/app_text_styles.dart';
+import 'package:soonstays/core/constants/app_urls.dart';
 import 'package:soonstays/core/widgets/common_buttons.dart';
 import '../../../../core/widgets/common_appbar.dart';
 import '../controllers/otp_verify_controller.dart';
@@ -82,7 +83,7 @@ class OtpVerifyView extends GetView<OtpVerifyController> {
                           ),
         
                           Text(
-                            "+91 ${controller.mobileNumber.value}",
+                            "${AppUrls.phoneCode} ${controller.mobileNumber.value}",
                             style: AppTextStyle.primary12Medium.copyWith(
                                 letterSpacing: 1,
                                 color: AppColors.blue
@@ -223,7 +224,7 @@ class OtpVerifyView extends GetView<OtpVerifyController> {
 
                 15.width,
 
-                Text("OR"),
+                Text(AppStrings.or),
 
                 15.width,
 
