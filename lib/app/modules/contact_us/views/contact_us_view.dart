@@ -188,75 +188,89 @@ class ContactUsView extends GetView<ContactUsController> {
 
               20.height,
 
-              Text(
-                AppStrings.sendUsAMessage,
-                style: AppTextStyle.black13SemiBold,
-              ),
+              Form(
+                key: controller.globalKey.value,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
 
-              5.height,
+                    Text(
+                      AppStrings.sendUsAMessage,
+                      style: AppTextStyle.black13SemiBold,
+                    ),
 
-              CustomInputFieldBorder(
-                borderColor: AppColors.black,
-                controller: controller.fullNameController.value,
-                hintText: AppStrings.fullName,
-                validator: (value) => Validators.required(
-                    value,
-                    AppStrings.fullNameIsRequired
-                  ),
-              ),
+                    5.height,
 
-              5.height,
+                    CustomInputFieldBorder(
+                      borderColor: AppColors.black,
+                      controller: controller.fullNameController.value,
+                      hintText: AppStrings.fullName,
+                      validator: (value) => Validators.required(
+                          value,
+                          AppStrings.fullNameIsRequired
+                      ),
+                    ),
 
-              CustomInputFieldBorder(
-                controller: controller.mobileController.value,
-                hintText: AppStrings.mobileNumber,
-                inputType: TextInputType.phone,
-                inputFormattes: [
-                  FilteringTextInputFormatter.digitsOnly
-                ],
-                validator: (value) => Validators.phone(
-                    value,
-                    10
+                    5.height,
+
+                    CustomInputFieldBorder(
+                      controller: controller.mobileController.value,
+                      hintText: AppStrings.mobileNumber,
+                      inputType: TextInputType.phone,
+                      inputFormattes: [
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
+                      validator: (value) => Validators.phone(
+                          value,
+                          10
+                      ),
+                    ),
+
+                    5.height,
+
+                    CustomInputFieldBorder(
+                      controller: controller.emailController.value,
+                      hintText: AppStrings.emailAddress,
+                      validator: (value) => Validators.email(
+                          controller.emailController.value.text
+                      ),
+                    ),
+
+                    5.height,
+
+                    CustomInputFieldBorder(
+                      maxLines: 4,
+                      controller: controller.descriptionController.value,
+                      hintText: AppStrings.howCanWeHelpYou,
+                      validator: (value) => Validators.required(
+                          value,
+                          AppStrings.messageIsRequired
+                      ),
+                    ),
+
+                    15.height,
+
+                    CommonCaptcha(
+                      key: controller.captchaKey.value,
+                      controller: controller.captchaController.value,
+                      onCaptchaChanged:(captcha) {
+
+                        controller.captchaValue.value = captcha.toString().trim();
+
+                      },
+                    ),
+
+                    15.height,
+
+                    CommonButton(
+                      onTap: () => controller.submitContactUs(),
+                      height: 40,
+                      text: AppStrings.sendMessage,
+                      textStyle: AppTextStyle.white14SemiBold,
+                    ),
+
+                  ],
                 ),
-              ),
-
-              5.height,
-
-              CustomInputFieldBorder(
-                controller: controller.emailController.value,
-                hintText: AppStrings.emailAddress,
-                validator: (value) => Validators.email(
-                    controller.emailController.value.text
-                ),
-              ),
-
-              5.height,
-
-              CustomInputFieldBorder(
-                maxLines: 4,
-                controller: controller.descriptionController.value,
-                hintText: AppStrings.howCanWeHelpYou,
-              ),
-
-              15.height,
-
-              CommonCaptcha(
-                key: controller.captchaKey.value,
-                controller: controller.captchaController.value,
-                onCaptchaChanged:(captcha) {
-
-                  controller.captchaValue.value = captcha.toString().trim();
-
-                },
-              ),
-
-              15.height,
-
-              CommonButton(
-                onTap: () {},
-                height: 40,
-                text: AppStrings.sendMessage,
-                textStyle: AppTextStyle.white14SemiBold,
               ),
 
               20.height,

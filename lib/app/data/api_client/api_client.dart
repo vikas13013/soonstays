@@ -1,5 +1,6 @@
 import 'package:chopper/chopper.dart';
 import 'package:soonstays/app/data/services/auth/auth_service.dart';
+import 'package:soonstays/app/data/services/contact_us/contact_us_service.dart';
 import 'package:soonstays/app/data/services/investor/investor_service.dart';
 import '../../../core/constants/api_constants.dart';
 import '../../../core/network/auth_interceptor.dart';
@@ -44,6 +45,9 @@ final chopperClient = ChopperClient(
 
     ///Investor Service Create
     InvestorService.create(),
+
+    ///ContactUs Service Create
+    ContactUsService.create(),
 
   ],
 

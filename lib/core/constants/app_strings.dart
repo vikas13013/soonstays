@@ -315,6 +315,8 @@ class AppStrings {
 
   static String fullNameIsRequired = "Full Name is required";
 
+  static String messageIsRequired = "Message is required";
+
   static String emailIsRequired = "Email is required";
 
   static String isRequired = "is required";
