@@ -38,6 +38,10 @@ class ApiConstants {
 
   static const String myBookings = "/api/v1/bookings/my-bookings";
 
+  static const String investor = "/api/v1/investor";
+
+  static const String contactUs = "/api/v1/contact";
+
 
   static const String cancellationPolicy = "/cancellation-policy/";
 

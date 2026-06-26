@@ -183,8 +183,7 @@ class MyTripsController extends GetxController with GetSingleTickerProviderState
 
       if (response.isSuccessful) {
 
-        final result =
-        BookingsModel.fromJson(
+        final result = BookingsModel.fromJson(
           response.body,
         );
 

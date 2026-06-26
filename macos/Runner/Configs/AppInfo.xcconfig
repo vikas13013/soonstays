@@ -8,7 +8,7 @@
 PRODUCT_NAME = soonstays
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.soonstays.soonstays
+PRODUCT_BUNDLE_IDENTIFIER = com.soonstays.app
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2026 com.soonstays. All rights reserved.

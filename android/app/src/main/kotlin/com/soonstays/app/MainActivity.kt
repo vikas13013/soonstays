@@ -1,4 +1,4 @@
-package com.soonstays.soonstays
+package com.soonstays.app
 
 import io.flutter.embedding.android.FlutterActivity
 

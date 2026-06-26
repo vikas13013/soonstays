@@ -234,7 +234,15 @@ myTripsList({
 
     /// Empty State
     if (bookingData.list.isEmpty) {
-      return EmptyTripView();
+      return ListView(
+          physics: ScrollPhysics(),
+          children: [
+
+            EmptyTripView().marginOnly(
+              top: 80
+            )
+
+          ]);
     }
 
     return RefreshIndicator(

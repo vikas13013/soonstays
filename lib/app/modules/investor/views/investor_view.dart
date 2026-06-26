@@ -1,4 +1,3 @@
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:soonstays/core/constants/app_colors.dart';
@@ -10,9 +9,7 @@ import 'package:soonstays/core/widgets/common_buttons.dart';
 import 'package:soonstays/core/widgets/common_captcha.dart';
 import '../../../../core/constants/app_assets.dart';
 import '../../../../core/utils/textfield_validation.dart';
-import '../../../../core/widgets/common_footer.dart';
 import '../../../../core/widgets/common_text_field.dart';
-import '../../../../core/widgets/drawer.dart';
 import '../controllers/investor_controller.dart';
 
 class InvestorView extends GetView<InvestorController> {
@@ -24,7 +21,7 @@ class InvestorView extends GetView<InvestorController> {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: CommonAppBar(
-          title: "${AppStrings.investor}",
+          title: AppStrings.investor,
           isActionTrue: true
       ),
       body: SingleChildScrollView(
@@ -532,102 +529,108 @@ class InvestorView extends GetView<InvestorController> {
                   ),
                 ],
               ),
-              child: Column(
-                crossAxisAlignment:
-                CrossAxisAlignment.start,
-                children: [
+              child: Form(
+                key: controller.globalKey.value,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
 
-                  Text(
-                    AppStrings.investorEnquiryDesk,
-                    style: AppTextStyle.primary20ExtraBold,
-                  ),
-
-                  10.height,
-
-                  Text(
-                    AppStrings.accessOurSeriesAPitchDeck,
-                    style: AppTextStyle.greyDark12Light,
-                  ),
-                  // 0xff64748B
-
-                  20.height,
-
-
-                  Text(
-                    AppStrings.name.toUpperCase(),
-                    style: AppTextStyle.greay14Medium,
-                  ),
-
-                  5.height,
-
-                  ///Username TextField
-                  CustomInputFieldBorder(
-                    borderColor: AppColors.black,
-                    controller: TextEditingController(),
-                    hintText: AppStrings.enterName,
-                    validator: (value) => Validators.required(
-                        value,
-                        AppStrings.userNameIsRequired.tr
+                    Text(
+                      AppStrings.investorEnquiryDesk,
+                      style: AppTextStyle.primary20ExtraBold,
                     ),
-                  ),
 
-                  25.height,
+                    10.height,
 
-                  Text(
-                    AppStrings.mobileNumber.toUpperCase(),
-                    style: AppTextStyle.greay14Medium,
-                  ),
-
-                  5.height,
-
-                  ///mobile TextField
-                  CustomInputFieldBorder(
-                    borderColor: AppColors.black,
-                    controller: TextEditingController(),
-                    hintText: AppStrings.digitNumber,
-                    validator: (value) => Validators.phone(
-                        value,
-                        10
+                    Text(
+                      AppStrings.accessOurSeriesAPitchDeck,
+                      style: AppTextStyle.greyDark12Light,
                     ),
-                  ),
 
-                  20.height,
+                    20.height,
 
-                  Text(
-                    AppStrings.email.toUpperCase(),
-                    style: AppTextStyle.greay14Medium,
-                  ),
 
-                  5.height,
-
-                  ///Email TextField
-                  CustomInputFieldBorder(
-                    borderColor: AppColors.black,
-                    controller: TextEditingController(),
-                    hintText: AppStrings.abcCompanyCom,
-                    validator: (value) => Validators.required(
-                        value,
-                        AppStrings.emailIsRequired
+                    Text(
+                      AppStrings.name.toUpperCase(),
+                      style: AppTextStyle.greay14Medium,
                     ),
-                  ),
 
-                  20.height,
+                    5.height,
 
-                  CommonCaptcha(
-                    controller: TextEditingController(),
-                    onCaptchaChanged: (captcha) {},
-                  ),
+                    ///Username TextField
+                    CustomInputFieldBorder(
+                      borderColor: AppColors.black,
+                      controller: controller.nameController.value,
+                      hintText: AppStrings.enterName,
+                      validator: (value) => Validators.required(
+                          value,
+                          AppStrings.userNameIsRequired.tr
+                      ),
+                    ),
 
-                  28.height,
+                    25.height,
 
-                  CommonButton(
-                    height: 55,
-                    text: AppStrings.submitInvestmentEnquiry,
-                    textStyle: AppTextStyle.white15SemiBold,
-                    onTap: () {}
-                  )
+                    Text(
+                      AppStrings.mobileNumber.toUpperCase(),
+                      style: AppTextStyle.greay14Medium,
+                    ),
 
-                ],
+                    5.height,
+
+                    ///mobile TextField
+                    CustomInputFieldBorder(
+                      borderColor: AppColors.black,
+                      controller: controller.mobileController.value,
+                      hintText: AppStrings.digitNumber,
+                      validator: (value) => Validators.phone(
+                          value,
+                          10
+                      ),
+                    ),
+
+                    20.height,
+
+                    Text(
+                      AppStrings.email.toUpperCase(),
+                      style: AppTextStyle.greay14Medium,
+                    ),
+
+                    5.height,
+
+                    ///Email TextField
+                    CustomInputFieldBorder(
+                      borderColor: AppColors.black,
+                      controller: controller.emailController.value,
+                      hintText: AppStrings.abcCompanyCom,
+                      validator: (value) => Validators.required(
+                          value,
+                          AppStrings.emailIsRequired
+                      ),
+                    ),
+
+                    20.height,
+
+                    CommonCaptcha(
+                      key: controller.captchaKey.value,
+                      controller: controller.captchaController.value,
+                      onCaptchaChanged:(captcha) {
+
+                        controller.captchaValue.value = captcha.toString().trim();
+
+                      },
+                    ),
+
+                    28.height,
+
+                    CommonButton(
+                        height: 55,
+                        text: AppStrings.submitInvestmentEnquiry,
+                        textStyle: AppTextStyle.white15SemiBold,
+                        onTap: () => controller.submitInvestor()
+                    )
+
+                  ],
+                ),
               ),
             ),
 

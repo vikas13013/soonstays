@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:soonstays/core/constants/app_strings.dart';
 import 'package:soonstays/core/constants/app_urls.dart';
 import 'package:soonstays/core/widgets/common_buttons.dart';
 import 'package:soonstays/core/widgets/common_text_field.dart';
-import 'package:soonstays/core/widgets/image_cache_network.dart';
-
 import '../../../../core/constants/app_assets.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_size.dart';
 import '../../../../core/constants/app_text_styles.dart';
 import '../../../../core/utils/common_launcher.dart';
+import '../../../../core/utils/textfield_validation.dart';
 import '../../../../core/widgets/common_appbar.dart';
+import '../../../../core/widgets/common_captcha.dart';
 import '../controllers/contact_us_controller.dart';
 
 class ContactUsView extends GetView<ContactUsController> {
@@ -196,61 +196,58 @@ class ContactUsView extends GetView<ContactUsController> {
               5.height,
 
               CustomInputFieldBorder(
-                controller: TextEditingController(),
+                borderColor: AppColors.black,
+                controller: controller.fullNameController.value,
                 hintText: AppStrings.fullName,
-                prefixIcon: Icon(
-                  Icons.person_outline_outlined,
-                  color: AppColors.blue1,
-                  size: 15,
-                ).marginOnly(
-                    left: 10,
-                    right: 5
-                ),
+                validator: (value) => Validators.required(
+                    value,
+                    AppStrings.fullNameIsRequired
+                  ),
               ),
 
               5.height,
 
               CustomInputFieldBorder(
-                controller: TextEditingController(),
+                controller: controller.mobileController.value,
                 hintText: AppStrings.mobileNumber,
-                prefixIcon: Icon(
-                  Icons.phone_outlined,
-                  color: AppColors.blue1,
-                  size: 15,
-                ).marginOnly(
-                    left: 10,
-                    right: 5
+                inputType: TextInputType.phone,
+                inputFormattes: [
+                  FilteringTextInputFormatter.digitsOnly
+                ],
+                validator: (value) => Validators.phone(
+                    value,
+                    10
                 ),
               ),
 
               5.height,
 
               CustomInputFieldBorder(
-                controller: TextEditingController(),
+                controller: controller.emailController.value,
                 hintText: AppStrings.emailAddress,
-                prefixIcon: Icon(
-                  Icons.email_outlined,
-                  color: AppColors.blue1,
-                  size: 15,
-                ).marginOnly(
-                    left: 10,
-                    right: 5
+                validator: (value) => Validators.email(
+                    controller.emailController.value.text
                 ),
               ),
 
               5.height,
 
               CustomInputFieldBorder(
-                controller: TextEditingController(),
+                maxLines: 4,
+                controller: controller.descriptionController.value,
                 hintText: AppStrings.howCanWeHelpYou,
-                prefixIcon: Icon(
-                  Icons.phone_outlined,
-                  color: AppColors.blue1,
-                  size: 15,
-                ).marginOnly(
-                    left: 10,
-                    right: 5
-                ),
+              ),
+
+              15.height,
+
+              CommonCaptcha(
+                key: controller.captchaKey.value,
+                controller: controller.captchaController.value,
+                onCaptchaChanged:(captcha) {
+
+                  controller.captchaValue.value = captcha.toString().trim();
+
+                },
               ),
 
               15.height,

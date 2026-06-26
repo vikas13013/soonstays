@@ -14,6 +14,7 @@ enum AppToastType {
 
 class AppToast {
   static void show({
+    SnackPosition? snackPosition,
     String? title,
     required String message,
     AppToastType type = AppToastType.success,
@@ -43,7 +44,7 @@ class AppToast {
     }
 
     Get.rawSnackbar(
-      snackPosition: SnackPosition.TOP,
+      snackPosition: snackPosition??SnackPosition.TOP,
       backgroundColor: Colors.transparent,
       margin: const EdgeInsets.symmetric(
         horizontal: 10,
@@ -71,15 +72,6 @@ class AppToast {
         child: IntrinsicHeight(
           child: Row(
             children: [
-
-              /// Accent Line
-              // Container(
-              //   width: 4,
-              //   decoration: BoxDecoration(
-              //     color: accentColor,
-              //     borderRadius: BorderRadius.circular(10),
-              //   ),
-              // ),
 
               Container(
                 height: 25,

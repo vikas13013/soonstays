@@ -13,16 +13,10 @@ class EmptyTripView extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Center(
-
       child: Padding(
-
         padding: const EdgeInsets.all(24),
-
         child: Column(
-
-          mainAxisAlignment:
-          MainAxisAlignment.center,
-
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
             Image.asset(
@@ -61,9 +55,7 @@ class EmptyTripView extends StatelessWidget {
                       Color(0xff4A88FF),
                     ],
                   ),
-
-                  borderRadius:
-                  BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(20),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -75,14 +67,14 @@ class EmptyTripView extends StatelessWidget {
                       color: Colors.white,
                     ),
 
-                    const SizedBox(width: 10),
+                    10.width,
 
                     Text(
                         AppStrings.exploreHotels,
                         style: AppTextStyle.white15SemiBold
                     ),
 
-                    const SizedBox(width: 10),
+                    10.width,
 
                     const Icon(
                       Icons.arrow_forward,
@@ -115,16 +107,10 @@ class EmptyPropertyView extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Center(
-
       child: Padding(
-
         padding: const EdgeInsets.all(24),
-
         child: Column(
-
-          mainAxisAlignment:
-          MainAxisAlignment.center,
-
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
             Image.asset(
@@ -164,9 +150,7 @@ class EmptyPropertyView extends StatelessWidget {
                       Color(0xff4A88FF),
                     ],
                   ),
-              
-                  borderRadius:
-                  BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(20),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -178,8 +162,8 @@ class EmptyPropertyView extends StatelessWidget {
                       color: Colors.white,
                       size: 20,
                     ),
-              
-                    const SizedBox(width: 10),
+
+                    10.width,
               
                     Text(
                         AppStrings.tryNewSearch,
