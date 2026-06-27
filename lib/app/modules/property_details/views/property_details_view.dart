@@ -69,8 +69,9 @@ class PropertyDetailsView extends GetView<PropertyDetailsController> {
                         bottom: 15,
                         right: 10,
                         child: InkWell(
-                          onTap : () => RoomDetailsDialog.show(
-                            context: context,
+                          onTap : () => Get.toNamed(
+                            Routes.PROPERTIES_IMAGES,
+                            arguments: controller.propertyImages,
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,

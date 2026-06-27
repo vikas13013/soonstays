@@ -1,14 +1,9 @@
-
-
-
-import 'package:flutter/material.dart';
 import 'package:gallery_zoom_slides/gallery_zoom_slides.dart';
 import 'package:get/get.dart';
-
 import '../constants/app_colors.dart';
 
 GalleryZoomSlides({
-  required List<String> imageList,
+  List<String>?imageList,
 }){
 
   List<String> imageListNew = [
@@ -19,10 +14,8 @@ GalleryZoomSlides({
 
   return Get.to(
       galleryZoomSlides(
-
         //required fields
-        arrayImages: imageListNew,
-
+        arrayImages: imageList??imageListNew,
         //Optional fields
         zoomTheme: ZoomTheme.theme3,//.theme1, .theme2, .theme3
         selectedThumbnailColor: AppColors.secondary,

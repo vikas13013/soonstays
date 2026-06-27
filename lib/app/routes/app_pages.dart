@@ -34,6 +34,8 @@ import '../modules/otp_verify/bindings/otp_verify_binding.dart';
 import '../modules/otp_verify/views/otp_verify_view.dart';
 import '../modules/privacy_policy/bindings/privacy_policy_binding.dart';
 import '../modules/privacy_policy/views/privacy_policy_view.dart';
+import '../modules/properties_images/bindings/properties_images_binding.dart';
+import '../modules/properties_images/views/properties_images_view.dart';
 import '../modules/property_details/bindings/property_details_binding.dart';
 import '../modules/property_details/views/property_details_view.dart';
 import '../modules/property_list/bindings/property_list_binding.dart';
@@ -169,6 +171,11 @@ class AppPages {
       name: _Paths.MENU,
       page: () => MenuView(),
       binding: MenuBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROPERTIES_IMAGES,
+      page: () => PropertiesImagesView(),
+      binding: PropertiesImagesBinding(),
     ),
   ];
 }

@@ -22,6 +22,8 @@ class ApiConstants {
 
   static const String propertyDetails = "/api/v1/property/consumer/search/property/detail";
 
+  static const String propertyImages = "/api/v1/media-assets/property-images-by-tags";
+
   static const corporate = '/api/v1/corporate';
 
   static const franchise = '/api/v1/frenchises';

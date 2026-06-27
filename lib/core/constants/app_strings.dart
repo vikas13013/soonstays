@@ -124,6 +124,8 @@ class AppStrings {
 
   static const contactUs = "Contact Us";
 
+  static const propertyPhotos = "Property Photos";
+
   static const faq = "FAQ";
 
   static const policies = "Policies";

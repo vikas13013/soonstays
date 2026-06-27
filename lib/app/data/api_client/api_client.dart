@@ -11,6 +11,7 @@ import '../services/corporate/corporate_service.dart';
 import '../services/coupon/offer_service.dart';
 import '../services/franchise/franchise_service.dart';
 import '../services/profile/profile_service.dart';
+import '../services/property_images/property_image_service.dart';
 import '../services/travel_agent/travel_agent_service.dart';
 
 final chopperClient = ChopperClient(
@@ -48,6 +49,9 @@ final chopperClient = ChopperClient(
 
     ///ContactUs Service Create
     ContactUsService.create(),
+
+    ///PropertyImages Service Create
+    PropertyImageService.create(),
 
   ],
 

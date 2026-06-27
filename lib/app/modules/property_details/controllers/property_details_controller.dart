@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:soonstays/app/data/model/property_details/property_details_model.dart';
 import 'package:soonstays/app/data/model/search_criteria_model.dart';
+import 'package:soonstays/app/data/services/property_images/property_image_service.dart';
 import 'package:soonstays/core/constants/app_strings.dart';
 import 'package:soonstays/core/widgets/common_loader.dart';
 
 import '../../../../core/arguments/property_details_arguments.dart';
 import '../../../../core/get_storage/session_manager.dart';
+import '../../../data/api_client/api_client.dart';
 import '../../../data/model/property_details/available_rooms_model.dart';
 import '../../../data/model/property_list/property_list_model.dart';
 import '../../../data/repository/property_details_repository.dart';
@@ -33,7 +35,13 @@ class PropertyDetailsController extends GetxController with GetSingleTickerProvi
 
     propertyListData.value = data.propertiesData!;
 
-    getPropertyDetails();
+    Future.wait([
+
+    getPropertyDetails(),
+
+    getPropertyImages(proId: data.propertiesData!.propertyId.toString()),
+
+    ]);
 
   }
 
@@ -230,6 +238,53 @@ class PropertyDetailsController extends GetxController with GetSingleTickerProvi
         Routes.BOOKING_SCREEN,
         arguments: data
     );
+
+  }
+
+  ///Property Images Get
+
+  PropertyImageService propertyImageService = chopperClient.getService<PropertyImageService>();
+
+  final propertyImagesData = {}.obs;
+
+  final propertyImages = {}.obs;
+
+  Future<void> getPropertyImages({required String proId}) async{
+
+    try {
+
+      final payload = {
+        "propertyId":"${proId}"
+      };
+
+      log("payload11 : ${jsonEncode(payload)}");
+
+      final response = await propertyImageService.getPropertyImages(
+        payload,
+      );
+
+      if (response.isSuccessful) {
+
+        final body = response.body;
+
+        propertyImagesData.value = body;
+
+        propertyImages.value = propertyImagesData['data']['properties'];
+
+
+      } else {
+
+        print(
+          response.error,
+        );
+
+      }
+
+    } catch (e) {
+
+      print(e);
+
+    }
 
   }
 
