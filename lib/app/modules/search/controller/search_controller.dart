@@ -14,8 +14,8 @@ import 'package:soonstays/core/widgets/common_loader.dart';
 import '../../../../core/get_storage/storage_keys.dart';
 import '../../../../core/utils/app_date_format.dart';
 import '../../../../core/utils/geo_locator.dart';
-import '../../../data/model/location_model.dart';
-import '../../../data/model/search_criteria_model.dart';
+import '../../../data/model/location/location_model.dart';
+import '../../../data/model/search_criteria/search_criteria_model.dart';
 import '../../../data/services/location/location_service.dart';
 
 class SearchViewController extends GetxController{

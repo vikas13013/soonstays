@@ -12,7 +12,7 @@ import '../../../data/api_client/api_client.dart';
 import '../../../data/model/offers/validate_coupon_request.dart';
 import '../../../data/model/property_details/available_rooms_model.dart';
 import '../../../data/model/property_details/property_details_model.dart';
-import '../../../data/model/search_criteria_model.dart';
+import '../../../data/model/search_criteria/search_criteria_model.dart';
 import '../../../data/services/checkout/checkout_service.dart';
 
 class BookingScreenController extends GetxController {

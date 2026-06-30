@@ -124,6 +124,8 @@ class AppStrings {
 
   static const contactUs = "Contact Us";
 
+  static const premiumSelection = "PREMIUM SELECTION";
+
   static const propertyPhotos = "Property Photos";
 
   static const faq = "FAQ";
@@ -1141,6 +1143,14 @@ class AppStrings {
   static String  handpickedHotelsAcross = "500+ handpicked hotels across\ntier-1 and tier-2 cities.";
 
   static String  or = "OR";
+
+  static String  area = "AREA";
+
+  static String  bedding = "Bedding";
+
+  static String  maxAdults = "Max Adults";
+
+  static String  maxOccupancy = "Max Occupancy";
 
   ///Privacy Policy
 

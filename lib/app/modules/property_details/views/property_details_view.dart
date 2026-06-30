@@ -10,6 +10,7 @@ import 'package:soonstays/core/widgets/common_rating_idicator.dart';
 import 'package:soonstays/core/widgets/common_readmore_widget.dart';
 import 'package:soonstays/core/widgets/common_view_details.dart';
 import 'package:soonstays/core/widgets/shimmer/property_details_shimmer.dart';
+import '../../../../core/utils/share_plus.dart';
 import '../../../../core/widgets/image_cache_network.dart';
 import '../../../data/model/property_details/available_rooms_model.dart';
 import '../../../routes/app_pages.dart';
@@ -147,7 +148,13 @@ class PropertyDetailsView extends GetView<PropertyDetailsController> {
                       Positioned(
                         top: 15,
                         right: 10,
-                        child: circleButton(Icons.share_outlined),
+                        child: InkWell(
+                            onTap: () => CommonShare.link(
+                              title: "SoonStays",
+                              url: "https://soonstays.com",
+                            ),
+                            child: circleButton(Icons.share_outlined)
+                        ),
                       ),
 
 
@@ -689,23 +696,6 @@ class PropertyDetailsView extends GetView<PropertyDetailsController> {
 
               2.height,
 
-              time==''?
-              Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 5
-                ),
-                decoration: BoxDecoration(
-                  color: AppColors.lightBg,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(
-                  AppStrings.edit,
-                  style: AppTextStyle.primary12SemiBold.copyWith(
-                      color: AppColors.primary3
-                  ),
-                ),
-              ):
               Text(
                 time,
                 style: AppTextStyle.greay10Medium,
@@ -731,21 +721,18 @@ class PropertyDetailsView extends GetView<PropertyDetailsController> {
         Stack(
           children: [
 
-            ClipRRect(
-              borderRadius: BorderRadius.circular(28),
-              child: Image.network(
-                "https://images.unsplash.com/photo-1590490360182-c33d57733427",
-                height: 160,
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
+            CommonChacheImage(
+              Url: "${data.imageItems?[0].contentBucketUrl.toString()}",
+              imgHeight: 160,
+              imgWidht: double.infinity,
+              fit: BoxFit.cover
             ),
 
             Positioned(
               left: 16,
               bottom: 16,
               child: InkWell(
-                onTap : () => RoomDetailsDialog.show(context: context),
+                onTap : () => RoomDetailsDialog.show(context: context,data: data),
                 child: Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 8,
@@ -766,7 +753,7 @@ class PropertyDetailsView extends GetView<PropertyDetailsController> {
                       SizedBox(width: 6),
 
                       Text(
-                        "4 ${AppStrings.photos}",
+                        "${data.imageItems!.length} ${AppStrings.photos}",
                         style: AppTextStyle.black12Medium
                       )
 
@@ -882,7 +869,7 @@ class PropertyDetailsView extends GetView<PropertyDetailsController> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             TextButton(
-              onPressed: () => RoomDetailsDialog.show(context: context),
+              onPressed: () => RoomDetailsDialog.show(context: context,data: data),
               child: Row(
                 children: [
 

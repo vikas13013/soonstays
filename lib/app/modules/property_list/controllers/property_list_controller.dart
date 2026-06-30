@@ -9,7 +9,7 @@ import '../../../../core/arguments/property_details_arguments.dart';
 import '../../../../core/get_storage/session_manager.dart';
 import '../../../../core/utils/app_date_format.dart';
 import '../../../data/model/property_list/property_list_model.dart';
-import '../../../data/model/search_criteria_model.dart';
+import '../../../data/model/search_criteria/search_criteria_model.dart';
 import '../../../data/repository/property_repository.dart';
 import '../../search/view/search_view.dart';
 

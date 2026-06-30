@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:soonstays/app/modules/contact_us/views/contact_us_view.dart';
 import 'package:soonstays/core/constants/app_colors.dart';
+import 'package:soonstays/core/constants/app_strings.dart';
 import 'package:soonstays/core/constants/app_text_styles.dart';
 import 'package:get/get.dart';
 import 'package:soonstays/core/utils/gallery_zoom_slides.dart';
-
+import '../../app/data/model/property_details/available_rooms_model.dart';
 import '../constants/app_size.dart';
+import 'image_cache_network.dart';
 
 class RoomDetailsDialog {
 
   static Future<void> show({
 
     required BuildContext context,
+    required AvailableRoomsList data,
 
 
   }) async {
@@ -54,7 +58,7 @@ class RoomDetailsDialog {
                         children:  [
 
                           Text(
-                            "Family Room",
+                            "${data.name}",
                             style: AppTextStyle.black20Bold,
                           ),
 
@@ -69,7 +73,7 @@ class RoomDetailsDialog {
                               5.width,
 
                               Text(
-                                "PREMIUM SELECTION",
+                                AppStrings.premiumSelection,
                                 style: AppTextStyle.greay10Medium,
                               ),
                             ],
@@ -99,91 +103,56 @@ class RoomDetailsDialog {
                       children: [
 
                         InkWell(
-                          onTap: () => GalleryZoomSlides(imageList: []),
-                          child: ClipRRect(
-                            borderRadius:
-                            BorderRadius.circular(16),
-                            child: Image.network(
-                              "https://kehu.s3.amazonaws.com/property/025d7e77-5b8c-45cd-adcf-65107a029232/IMAGE/1776626878609-550638629%20(1).jpg",
-                              height: 250,
-                              width: double.infinity,
-                              fit: BoxFit.cover,
-                            ),
+                          onTap: () => GalleryZoomSlides(imageList: data.imageItems?.map((e) => e.contentBucketUrl.toString(),).toList()),
+                          child: CommonChacheImage(
+                              Url: "${data.imageItems?[0].contentBucketUrl.toString()}",
+                              imgHeight: 250,
+                              imgWidht: double.infinity,
+                              fit: BoxFit.cover
                           ),
                         ),
 
                         const SizedBox(height: 20),
 
-                        GridView.builder(
+                        GridView.count(
                           shrinkWrap: true,
-                          physics:
-                          NeverScrollableScrollPhysics(),
-                          itemCount: 4,
-                          gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                            childAspectRatio: 5/2,
-                          ),
-                          itemBuilder: (_, i) {
+                          physics: NeverScrollableScrollPhysics(),
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                          childAspectRatio: 5/2.1,
+                          children: [
 
-                            return Container(
-                              padding: EdgeInsets.all(15),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: AppColors.grey,
-                                    width: 0.3
-                                ),
-                                color: AppColors.greyLight.withOpacity(0.3),
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
+                            ///Area
+                            newBox(
+                                iconData: Icons.open_in_full_rounded,
+                                value: data.areaSqft.toString(),
+                                title: AppStrings.area
+                            ),
 
-                                  Container(
-                                    padding: EdgeInsets.all(5),
-                                    decoration: BoxDecoration(
-                                      color: AppColors.white,
-                                      border: Border.all(
-                                        color: AppColors.greyLight
-                                      ),
-                                      borderRadius: BorderRadius.circular(
-                                        8
-                                      )
-                                    ),
-                                    child: Icon(
-                                      Icons.groups_2_outlined,
-                                      color: AppColors.grey,
-                                      size: 18,
-                                    ),
-                                  ),
+                            ///Bedding
+                            newBox(
+                                iconData: Icons.bed_outlined,
+                                value: '${data.bedType.toString()}',
+                                title: AppStrings.bedding
+                            ),
 
-                                  10.width,
+                            ///Max Adults
+                            newBox(
+                                iconData: Icons.groups_2_outlined,
+                                value: data.maxAdults.toString(),
+                                title: AppStrings.maxAdults
+                            ),
 
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
+                            ///Max Occupancy
+                            newBox(
+                                iconData: Icons.groups_2_outlined,
+                                value: '${data.maxOccupancy.toString()}',
+                                title: AppStrings.maxOccupancy
+                            ),
 
-                                      Text(
-                                        "AREA",
-                                        style: AppTextStyle.greay10Medium,
-                                      ),
 
-                                      Text(
-                                        "180 sqft",
-                                        style: AppTextStyle.black14SemiBold,
-                                      )
-
-                                    ],
-                                  )
-
-                                ],
-                              ),
-                            );
-                          },
+                          ],
                         ),
 
                       ],
@@ -229,7 +198,74 @@ class RoomDetailsDialog {
     );
   }
 
+}
 
+Widget newBox({
+  required IconData iconData,
+  required String title,
+  required String value,
+}){
 
+  return Container(
+    padding: EdgeInsets.all(15),
+    decoration: BoxDecoration(
+      border: Border.all(
+          color: AppColors.grey,
+          width: 0.3
+      ),
+      color: AppColors.greyLight.withOpacity(0.3),
+      borderRadius: BorderRadius.circular(15),
+    ),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+
+        Container(
+          padding: EdgeInsets.all(5),
+          decoration: BoxDecoration(
+              color: AppColors.white,
+              border: Border.all(
+                  color: AppColors.greyLight
+              ),
+              borderRadius: BorderRadius.circular(
+                  8
+              )
+          ),
+          child: Icon(
+            iconData,
+            color: AppColors.grey,
+            size: 16,
+          ),
+        ),
+
+        10.width,
+
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+
+              Text(
+                title.toUpperCase(),
+                style: AppTextStyle.greay10Medium,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+
+              Text(
+                value,
+                style: AppTextStyle.black13SemiBold,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              )
+
+            ],
+          ),
+        )
+
+      ],
+    ),
+  );
 
 }

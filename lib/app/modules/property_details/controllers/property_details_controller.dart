@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:soonstays/app/data/model/property_details/property_details_model.dart';
-import 'package:soonstays/app/data/model/search_criteria_model.dart';
+import 'package:soonstays/app/data/model/search_criteria/search_criteria_model.dart';
 import 'package:soonstays/app/data/services/property_images/property_image_service.dart';
 import 'package:soonstays/core/constants/app_strings.dart';
 import 'package:soonstays/core/widgets/common_loader.dart';
@@ -13,6 +13,7 @@ import '../../../../core/arguments/property_details_arguments.dart';
 import '../../../../core/get_storage/session_manager.dart';
 import '../../../data/api_client/api_client.dart';
 import '../../../data/model/property_details/available_rooms_model.dart';
+import '../../../data/model/property_details/image_items.dart';
 import '../../../data/model/property_list/property_list_model.dart';
 import '../../../data/repository/property_details_repository.dart';
 import '../../../routes/app_pages.dart';
@@ -191,7 +192,11 @@ class PropertyDetailsController extends GetxController with GetSingleTickerProvi
 
         availableRoomsList.value = (body['available_rooms'] as List).map((e) => AvailableRoomsList.fromJson(e)).toList().obs;
 
-        searchCriteria.value = body['searchCriteria'];
+        searchCriteria.value = SearchCriteriaModel.fromJson(body['searchCriteria']);
+
+        mergeRoomImages();
+
+
 
         // print("bodybody :${body}");
 
@@ -249,6 +254,8 @@ class PropertyDetailsController extends GetxController with GetSingleTickerProvi
 
   final propertyImages = {}.obs;
 
+  final roomImages = {}.obs;
+
   Future<void> getPropertyImages({required String proId}) async{
 
     try {
@@ -271,6 +278,10 @@ class PropertyDetailsController extends GetxController with GetSingleTickerProvi
 
         propertyImages.value = propertyImagesData['data']['properties'];
 
+        roomImages.value = propertyImagesData['data']['rooms'];
+
+        mergeRoomImages();
+
 
       } else {
 
@@ -288,5 +299,19 @@ class PropertyDetailsController extends GetxController with GetSingleTickerProvi
 
   }
 
+
+  void mergeRoomImages() {
+
+    if (availableRoomsList.isEmpty || roomImages.isEmpty) {
+      return;
+    }
+
+    for (final room in availableRoomsList) {
+
+      room.imageItems = (roomImages[room.id]?["items"] as List<dynamic>? ?? []).map((e) => ImageItems.fromJson(e)).toList();
+    }
+
+    availableRoomsList.refresh();
+  }
 
 }

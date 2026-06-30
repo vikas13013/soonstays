@@ -16,7 +16,7 @@ import '../../../../core/utils/common_launcher.dart';
 import '../../../../core/widgets/common_appbar.dart';
 import '../../../../core/widgets/double_back_exit.dart';
 import '../../../data/model/property_list/property_list_model.dart';
-import '../../../data/model/search_criteria_model.dart';
+import '../../../data/model/search_criteria/search_criteria_model.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 

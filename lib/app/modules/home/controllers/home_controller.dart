@@ -12,7 +12,7 @@ import '../../../../core/get_storage/storage_keys.dart';
 import '../../../../core/utils/app_date_format.dart';
 import '../../../../core/utils/geo_locator.dart';
 import '../../../data/model/property_list/property_list_model.dart';
-import '../../../data/model/search_criteria_model.dart';
+import '../../../data/model/search_criteria/search_criteria_model.dart';
 import '../../../data/repository/property_repository.dart';
 import '../../../routes/app_pages.dart';
 
